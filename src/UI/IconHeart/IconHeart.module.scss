@@ -1,0 +1,8 @@
+.heart {
+    color: gray;
+    transition: .3s;
+
+    &:hover {
+        color: #dc0000;
+    }
+}

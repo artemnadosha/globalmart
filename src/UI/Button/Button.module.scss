@@ -1,0 +1,40 @@
+.button {
+    width: 100%;
+    height: 100%;
+    background: none;
+    outline: none;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.dark {
+    color: #1c1839;
+    background-color: #fd984c;
+}
+
+.holy {
+    color: white;
+    background-color: #860000;
+}
+
+.primary {
+    color: #1c1839;
+    background-color: #fd984c;
+}
+
+.secondary {
+    color: #fd984c;
+    background-color: #1c1839;
+}
+
+.submit {
+    color: white;
+    background-color: green;
+}
+
+.close {
+    color: white;
+    background-color: #860000;
+}

@@ -1,0 +1,8 @@
+.basket {
+    color: gray;
+    transition: .3s;
+
+    &:hover {
+        color: #008bea;
+    }
+}
