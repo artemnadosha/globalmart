@@ -6,8 +6,8 @@
 
 #root {
     width: 100%;
-    height: 100vh;
-    background-color: #009aa9;
+    height: 100%;
+    background: #F7FAFC;
 }
 
 h1 {
@@ -28,6 +28,12 @@ h3 {
     font-family: sans-serif;
 }
 
+h4 {
+    font-size: 24px;
+    color: currentColor;
+    font-family: sans-serif;
+}
+
 p {
     font-size: 18px;
     color: currentColor;
@@ -40,6 +46,11 @@ p {
     &.verySmall {
         font-size: 12px;
     }
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
 }
 
 

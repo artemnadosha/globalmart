@@ -1,6 +1,6 @@
 export enum enumButton {
-  submit = "submit",
-  close = "close",
-  primary = "primary",
-  secondary = "secondary",
+  SUBMIT = "submit",
+  CLOSE = "close",
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
 }

@@ -1,50 +1,18 @@
-import "./App.scss";
-import {enumStyle} from "./enum/enumStyle";
-import Modal from "./component/Modal/Modal";
-import {enumLorem} from "./enum/enumLorem";
-import Button from "./UI/Button/Button";
+import "./App.module.scss";
 import {useEffect, useState} from "react";
-import {enumButton} from "./enum/enumButton";
-import {ModalProps} from "./component/Modal/Modal.utils";
-import ProductCard from "./component/ProductCard/ProductCard";
 import {TypeProduct} from "./types/TypeProduct";
+import ProductList from "./component/Product/ProductList/ProductList";
+import Header from "./component/Header/Header";
+import styles from './App.module.scss'
+import ContextStore from "./tools/ContextStore";
+import ProductInfo from "./pages/ProductPage/ProductInfo/ProductInfo";
+import AppRouter from "./component/AppRouter/AppRouter";
+import {BrowserRouter} from "react-router-dom";
 
 const App = () => {
-    const [modalAction, setModalAction] = useState<boolean>(false);
-    const [contentModal, setContentModal] = useState<ModalProps>({
-        onClick: () => {
-        },
-        content: '',
-        closeButton: false,
-        titleHeader: ''
-    })
     const [products, setProducts] = useState<TypeProduct[]>([]);
-    const handlerOpenModal = (): void => {
-        setModalAction(true)
-    }
-    const handlerCloseModal = (): void => {
-        setModalAction(false)
-    }
-
-    const firstButton = (): void => {
-        handlerOpenModal()
-        setContentModal({
-            onClick: handlerCloseModal,
-            content: enumLorem.lorem30,
-            closeButton: true,
-            titleHeader: 'First Number'
-        })
-    }
-
-    const secondButton = (): void => {
-        handlerOpenModal()
-        setContentModal({
-            onClick: handlerCloseModal,
-            content: enumLorem.lorem20,
-            closeButton: false,
-            titleHeader: 'Second Number'
-        })
-    }
+    const [basketItem, setBasketItem] = useState<TypeProduct[]>([])
+    const [likedItem, setLikedItem] = useState<TypeProduct[]>([])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -56,27 +24,24 @@ const App = () => {
         if (!products[0]) {
             fetchData()
         }
-    }, [])
-
-    console.log(products)
+    })
 
 
     return (
-        <div>
-            <div style={{display: "flex", gap: "20px"}}>
-                <Button style={enumButton.primary} onClick={firstButton}><p>Open First modal</p></Button>
-                <Button style={enumButton.secondary} onClick={secondButton}><p>Open Second modal</p></Button>
-            </div>
-            {!!products.length && products.map(product => <ProductCard key={product.id} product={product}/>)}
+        <BrowserRouter>
+            <ContextStore.Provider
+                value={{
+                    basketItem,
+                    setBasketItem,
+                    likedItem,
+                    setLikedItem,
+                    products
 
+                }}>
+                <AppRouter/>
+            </ContextStore.Provider>
+        </BrowserRouter>
 
-            {modalAction &&
-				<Modal
-					onClick={contentModal.onClick}
-					content={contentModal.content}
-					titleHeader={contentModal.titleHeader}
-					style={enumStyle.DARK} closeButton={contentModal.closeButton}/>}
-        </div>
     );
 }
 

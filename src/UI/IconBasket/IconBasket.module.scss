@@ -1,8 +1,26 @@
 .basket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color: gray;
     transition: .3s;
+    cursor: pointer;
+    position: relative;
 
     &:hover {
+        p, svg {
+            color: #008bea;
+        }
+    }
+
+    &.active {
         color: #008bea;
     }
+}
+
+.countPosition {
+    position: absolute;
+    right: 9px;
+    top: 14px;
+    color: white;
 }

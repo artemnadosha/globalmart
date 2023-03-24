@@ -9,5 +9,5 @@ export type TypeProduct = {
   brand: string;
   category: string;
   thumbnail: string;
-  images: string[] | string;
+  images: string[];
 };

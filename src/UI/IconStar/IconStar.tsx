@@ -2,7 +2,10 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStar, faStarHalfAlt} from '@fortawesome/free-solid-svg-icons';
 import styles from './IconStar.module.scss'
 import {FC} from "react";
-import {IconStarProps} from "./IconStar.utils";
+
+export interface IconStarProps {
+    rating: number;
+}
 
 const IconStar: FC<IconStarProps> = ({rating}) => {
     const stars = [];
