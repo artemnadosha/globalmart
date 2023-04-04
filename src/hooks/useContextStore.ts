@@ -1,4 +1,4 @@
 import { useContext } from "react";
-import ContextStore from "../tools/ContextStore";
+import { ContextStore } from "../utils";
 
 export const useContextStore = () => useContext(ContextStore);

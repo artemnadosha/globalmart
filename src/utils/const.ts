@@ -10,24 +10,44 @@ export const lorem: Record<string, string> = {
 };
 
 export const defaultStateProduct: TypeProduct = {
-  id: 0,
-  brand: "",
-  rating: 0,
-  category: "",
-  price: 0,
-  discountPercentage: 0,
-  thumbnail: "",
-  images: [],
-  description: "",
-  stock: 0,
-  title: "",
+  brand: "Apple",
+  category: "smartphones",
+  description: "An apple mobile which is nothing like apple",
+  discountPercentage: 12.96,
+  id: 1,
+  images: [
+    "https://i.dummyjson.com/data/products/1/1.jpg",
+    "https://i.dummyjson.com/data/products/1/2.jpg",
+    "https://i.dummyjson.com/data/products/1/3.jpg",
+    "https://i.dummyjson.com/data/products/1/4.jpg",
+    "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+  ],
+  price: 549,
+  rating: 4.69,
+  stock: 94,
+  thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+  title: "iPhone 9",
 };
 
 type TypeRoutes = {
   HOME: string;
+  PRODUCTS: string;
+  PRODUCT_CATEGORIES: string;
   PRODUCT: string;
+  CART: string;
+  FAVORITE: string;
 };
-export const routes: TypeRoutes = {
+export const ROUTES: TypeRoutes = {
   HOME: "/",
-  PRODUCT: "/:id",
+  PRODUCTS: "products",
+  PRODUCT_CATEGORIES: ":categories",
+  PRODUCT: "/products/:categories/:id",
+  CART: "cart",
+  FAVORITE: "favorite",
+};
+
+export const SERVICES_LINK = {
+  PRODUCTS: "products",
+  CATEGORIES: "products/categories",
+  PRODUCT_CATEGORY: "products/category",
 };

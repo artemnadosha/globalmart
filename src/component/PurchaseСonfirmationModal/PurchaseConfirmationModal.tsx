@@ -1,16 +1,24 @@
-import {FC} from "react";
-import {Modal} from "../../UI";
-import {enumStyle} from "../../enum/enumStyle";
+import { FC } from "react";
+import { Modal } from "../../UI";
 
-interface PurchaseConfirmationModal {
-    onClose: () => void
-    onSubmit?: () => void
-    onCancel?: () => void
+interface PurchaseConfirmationModalProps {
+  onClose: () => void;
+  onSubmit?: () => void;
 }
 
-const PurchaseConfirmationModal: FC<PurchaseConfirmationModal> = ({onClose, onSubmit, onCancel}) => {
-    return <Modal content='Are you sure you want to make a purchase?' titleHeader='Are you sure?'
-                  closeButton={false} style={enumStyle.DARK} onClose={onClose} onSubmit={onSubmit} onCancel={onCancel}/>
+const PurchaseConfirmationModal: FC<PurchaseConfirmationModalProps> = ({
+  onClose,
+  onSubmit,
+}) => {
+  return (
+    <Modal
+      content="Are you sure you want to make a purchase?"
+      titleHeader="Are you sure?"
+      closeButton={false}
+      onClose={onClose}
+      onSubmit={onSubmit}
+    />
+  );
 };
 
 export default PurchaseConfirmationModal;

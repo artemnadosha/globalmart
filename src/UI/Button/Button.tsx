@@ -1,23 +1,31 @@
-import { FC, PropsWithChildren } from 'react';
-import styles from './Button.module.scss';
-import cn from 'classnames';
-import { enumButton } from '../../enum/enumButton';
+import { FC, PropsWithChildren } from "react";
+import { Button as ButtonAnt } from "antd";
 
 interface ButtonProps extends PropsWithChildren {
-    style?: enumButton;
-    onClick?: () => void;
+  onClick?: () => void;
+  type: "primary" | "default";
+  ghost?: boolean;
+  danger?: boolean;
 }
 
-const Button: FC<ButtonProps> = ({ style, onClick, children }) => {
-    return (
-        <button
-            onClick={onClick}
-            className={cn(styles.button, !!style && styles[style])}
-        >
-            <p>{children}</p>
-        </button>
-
-    );
+const Button: FC<ButtonProps> = ({
+  onClick,
+  children,
+  type,
+  danger,
+  ghost,
+}) => {
+  return (
+    <ButtonAnt
+      onClick={onClick}
+      type={type}
+      danger={danger}
+      size={"large"}
+      ghost={ghost}
+    >
+      <p>{children}</p>
+    </ButtonAnt>
+  );
 };
 
 export default Button;

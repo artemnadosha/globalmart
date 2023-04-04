@@ -1,55 +1,52 @@
-import {FC, PointerEvent, useState} from "react";
-import styles from './Header.module.scss'
-import {IconBasket, IconHeart} from "../../UI";
-import {useContextStore} from "../../hooks/useContextStore";
-import ProductDropDownList from "../ProductDropDownAction/ProductDropDownList/ProductDropDownList";
-import {Link} from "react-router-dom";
-import {routes} from "../../utils/const";
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
+import { useContextStore } from "../../hooks/useContextStore";
+import { ROUTES } from "../../utils/const";
+import { Layout } from "antd";
+import styles from "./Header.module.scss";
+import HeaderActionsItem from "./HeaderActionsItem/HeaderActionsItem";
+import { IconCart, IconFavorite } from "../../UI";
+
+const { Header: HeaderAnt } = Layout;
 
 const Header: FC = () => {
-    const {basketItem, likedItem} = useContextStore()
-    const [dropdownBasket, setDropdownBasket] = useState<boolean>(false);
-    const [dropdownLiked, setDropdownLiked] = useState<boolean>(false);
+  const { cartItem, favoriteItem, setProductCategory } = useContextStore();
+  const navigate = useNavigate();
 
-    const onPointerEnter = (e: PointerEvent<HTMLDivElement>) => {
-        if (e.currentTarget.id === 'basket') {
-            setDropdownBasket(true)
-        } else {
-            setDropdownLiked(true)
-        }
-
+  const handleBack = () => {
+    if (setProductCategory) {
+      navigate(`${ROUTES.PRODUCTS}/all`);
+      setProductCategory("all");
     }
+  };
 
-    const onPointerLeave = (e: PointerEvent<HTMLDivElement>) => {
-        if (e.currentTarget.id === 'basket') {
-            setDropdownBasket(false)
-        } else {
-            setDropdownLiked(false)
-        }
-    }
+  return (
+    <HeaderAnt className={styles.header}>
+      <div onClick={handleBack}>HOME</div>
+      <div>SEARCH</div>
+      <div className={styles.wrapperActions}>
+        {favoriteItem && (
+          <HeaderActionsItem
+            products={favoriteItem}
+            icon={<IconFavorite />}
+            listId="favorite"
+            textButton="Go to favorite"
+            colorBadge="red"
+          />
+        )}
 
-
-    return (
-        <div className={styles.wrapper}>
-            <Link to={routes.HOME}>HOME</Link>
-            <div>SEARCH</div>
-            <div className={styles.wrapperActions}>
-                <div className={styles.basket} onPointerEnter={onPointerEnter} onPointerLeave={onPointerLeave}
-                     id='liked'>
-                    <IconHeart withText={true}/>
-                    {!!likedItem?.length && dropdownLiked &&
-						<ProductDropDownList products={likedItem} itemId='liked'/>}
-                </div>
-                <div className={styles.basket} onPointerEnter={onPointerEnter} onPointerLeave={onPointerLeave}
-                     id='basket'>
-                    <IconBasket withText={true}/>
-                    {!!basketItem?.length && dropdownBasket &&
-						<ProductDropDownList products={basketItem} itemId='basket' textButton="Go to cart"/>}
-                </div>
-            </div>
-
-        </div>
-    );
+        {cartItem && (
+          <HeaderActionsItem
+            products={cartItem}
+            icon={<IconCart />}
+            listId="cart"
+            textButton="Go to cart"
+            colorBadge="blue"
+          />
+        )}
+      </div>
+    </HeaderAnt>
+  );
 };
 
 export default Header;

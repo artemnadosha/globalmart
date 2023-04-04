@@ -1,16 +1,19 @@
-import { FC } from 'react';
-import { useContextStore } from '../../hooks/useContextStore';
-import { useLocation } from 'react-router-dom';
+import {FC} from 'react';
+import {useContextStore} from '../../hooks/useContextStore';
+import {useLocation} from 'react-router-dom';
 import ProductInfo from './ProductInfo/ProductInfo';
+import {ROUTES} from "../../utils/const";
 
 const ProductPage: FC = () => {
-    const { products } = useContextStore();
-    const location = useLocation();
+    const {products} = useContextStore();
+    const {pathname} = useLocation();
 
-    const product = products?.find(product => `/${product.id}` === location.pathname);
+    const id = pathname.split('/')
+
+    const product = products?.find(product => product.id === +id[id.length - 1]);
 
     return <>
-        {!!product && <ProductInfo product={product} />}
+        {!!product && <ProductInfo product={product}/>}
     </>;
 };
 

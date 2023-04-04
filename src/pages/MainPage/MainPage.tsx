@@ -1,15 +1,20 @@
-import styles from "../../App.module.scss";
 import Header from "../../component/Header/Header";
-import {FC} from "react";
-import {Outlet} from "react-router-dom";
+import { FC } from "react";
+import { Outlet } from "react-router-dom";
+import { Layout } from "antd";
+import Sidebar from "../../component/Sidebar/Sidebar";
+import styles from "./MainPage.module.scss";
 
 const MainPage: FC = () => {
-    return (
-        <div className={styles.wrapper}>
-            <Header/>
-            <Outlet/>
-        </div>
-    );
+  return (
+    <Layout className={styles.wrapper}>
+      <Header />
+      <Layout className={styles.wrapper}>
+        <Sidebar />
+        <Outlet />
+      </Layout>
+    </Layout>
+  );
 };
 
 export default MainPage;

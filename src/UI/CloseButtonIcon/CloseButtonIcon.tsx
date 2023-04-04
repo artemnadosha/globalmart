@@ -12,7 +12,6 @@ const CloseButtonIcon: FC<CloseButtonProps> = ({onClick}) => {
             <div className={styles.rightLeft}></div>
             <label className={styles.close}>close</label>
         </div>)
-
 };
 
 export default CloseButtonIcon;

@@ -1,21 +1,23 @@
-import {Route, Routes, useLocation, useParams} from "react-router-dom";
-
-import {FC} from "react";
-import {MainPage} from "../../pages";
-import {routes} from "../../utils/const";
-import ProductPage from "../../pages/ProductPage/ProductPage";
-import HomePage from "../../pages/HomePage/HomePage";
+import React, { FC } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { ROUTES } from "../../utils/const";
+import { CartPage, HomePage, MainPage, ProductPage } from "../../pages";
 
 const AppRouter: FC = () => {
-    return (
-        <Routes>
-            <Route path={routes.HOME} element={<MainPage/>}>
-                <Route index element={<HomePage/>}/>
-                <Route path={routes.PRODUCT} element={<ProductPage/>}/>
-            </Route>
-
-        </Routes>
-    );
+  return (
+    <Routes>
+      <Route path={ROUTES.HOME} element={<MainPage />}>
+        <Route index element={<Navigate to={`${ROUTES.PRODUCTS}/all`} />} />
+        <Route path={ROUTES.CART} element={<CartPage />} />
+        <Route path={ROUTES.FAVORITE} element={<div>favorite</div>} />
+        <Route path={ROUTES.PRODUCTS} element={<HomePage />}>
+          <Route path={ROUTES.PRODUCT_CATEGORIES} element={<HomePage />} />
+        </Route>
+        <Route path={ROUTES.PRODUCT} element={<ProductPage />} />
+      </Route>
+      <Route path="/*" element={<Navigate to={ROUTES.PRODUCTS} />} />
+    </Routes>
+  );
 };
 
 export default AppRouter;
