@@ -4,3 +4,6 @@ export { default as IconCart } from "./IconCart/IconCart";
 export { default as IconFavorite } from "./IconFavorite/IconFavorite";
 export { default as IconStar } from "./IconStar/IconStar";
 export { default as CloseButtonIcon } from "./CloseButtonIcon/CloseButtonIcon";
+export { default as Content } from "./Content/Content";
+export { default as Pagination } from "./Pagination/Pagination";
+export { default as Image } from "./Image/Image";

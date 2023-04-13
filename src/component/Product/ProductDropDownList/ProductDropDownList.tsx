@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { TypeProduct } from "../../../types/TypeProduct";
-import ProductDropDownItem from "./ProductDropDownItem/ProductDropDownItem";
-import styles from "./ProductDropDownList.module.scss";
-import { Button } from "../../../UI";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../../UI";
+import ProductDropDownItem from "./ProductDropDownItem/ProductDropDownItem";
 import { correctionName } from "../../../utils";
+import { TypeProduct } from "../../../types/TypeProduct";
+import s from "./ProductDropDownList.module.scss";
 
 interface ProductDropDownListProps {
   products: TypeProduct[];
@@ -24,7 +24,7 @@ const ProductDropDownList: FC<ProductDropDownListProps> = ({
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className={s.wrapper}>
       <h2>My {correctionName(itemId)}</h2>
       {products.map((product) => (
         <ProductDropDownItem
@@ -33,7 +33,7 @@ const ProductDropDownList: FC<ProductDropDownListProps> = ({
           itemId={itemId}
         />
       ))}
-      <div className={styles.buttonWrapper}>
+      <div className={s.buttonWrapper}>
         <Button type={"primary"} onClick={handleGoTo}>
           {textButton}
         </Button>

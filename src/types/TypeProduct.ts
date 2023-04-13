@@ -10,4 +10,5 @@ export type TypeProduct = {
   category: string;
   thumbnail: string;
   images: string[];
+  quantity?: number;
 };

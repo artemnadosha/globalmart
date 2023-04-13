@@ -1,0 +1,26 @@
+.description {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+}
+
+.priceWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    position: relative;
+}
+
+.discount {
+    text-decoration: line-through;
+    color: gray;
+    position: absolute;
+    top: -10px;
+    right: 0;
+}
+
+.brand {
+    color: gray;
+}

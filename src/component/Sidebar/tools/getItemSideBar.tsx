@@ -1,7 +1,7 @@
 import { MenuProps } from "antd";
 import { Key, ReactNode } from "react";
 import { RobotOutlined } from "@ant-design/icons";
-import { correctionName } from "../../../utils/correctionName";
+import { correctionName } from "../../../utils";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -21,7 +21,7 @@ export function getItem(
   } as MenuItem;
 }
 
-export const GetItemSideBar = (sideBarItemsName: string[]): MenuItem[] => {
+export const getItemSideBar = (sideBarItemsName: string[]): MenuItem[] => {
   const sideBarItems = sideBarItemsName.map((sideBarItem) =>
     getItem(correctionName(sideBarItem), sideBarItem)
   );
