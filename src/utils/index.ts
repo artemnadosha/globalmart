@@ -1,6 +1,8 @@
 export { handleFindProduct } from "./handleFindProduct";
-export { default as ContextStore } from "./ContextStore";
 export { correctionName } from "./correctionName";
-export { discountAmount } from "./discountAmount";
+export { calculateDiscountAmount } from "./calculateDiscountAmount";
+export { sumCalculateDiscountAmount } from "./sumCalculateDiscountAmount";
 export { handleFilterItem } from "./handleFilterItem";
-export { priceWithoutDiscount } from "./priceWithoutDiscount";
+export { calculatePriceWithoutDiscount } from "./calculatePriceWithoutDiscount";
+export { sumCalculatePriceWithoutDiscount } from "./sumCalculatePriceWithoutDiscount";
+export { sumArray } from "./sumArray";

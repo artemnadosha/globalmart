@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { CartList } from "../../component/Cart";
-import styles from "./CartPage.module.scss";
+import { Content } from "../../UI";
 
 const CartPage: FC = () => {
   return (
-    <div className={styles.wrapper}>
+    <Content>
       <CartList />
-    </div>
+    </Content>
   );
 };
 

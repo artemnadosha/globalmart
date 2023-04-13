@@ -3,7 +3,8 @@ import { FC, MouseEvent, useState } from "react";
 import styles from "./ProductPage.module.scss";
 import { Button, IconStar } from "../../../UI";
 import cn from "classnames";
-import { useContextStore } from "../../../hooks/useContextStore";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
+import { addItemCart } from "../../../store/slice";
 
 interface ProductInfoProps {
   product: TypeProduct;
@@ -24,17 +25,16 @@ const ProductInfo: FC<ProductInfoProps> = ({ product }) => {
     description,
   } = product;
   const [headerImage, setHeaderImage] = useState<string>(thumbnail);
-  const { cartItem, setCartItem } = useContextStore();
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector((state) => state.rootReducer.cart.cart);
 
   const changeHeaderImage = (e: MouseEvent<HTMLImageElement>) => {
     setHeaderImage(e.currentTarget.src);
   };
 
   const handlerAddProductBasket = () => {
-    if (!cartItem?.find((item) => item.id === product.id)) {
-      if (setCartItem) {
-        setCartItem((prevState) => [...prevState, product]);
-      }
+    if (!cart?.find((item) => item.id === product.id)) {
+      dispatch(addItemCart(product));
     }
   };
 

@@ -3,15 +3,14 @@ import { FC, useState } from "react";
 import { TypeProduct } from "../../../types/TypeProduct";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../utils/const";
-import { correctionName } from "../../../utils/correctionName";
 import styles from "./CartItem.module.scss";
 import { Button } from "../../../UI";
-import { cartItemQuantityType } from "../CartList/CartList";
+import { correctionName } from "../../../utils";
 
 interface CartItemProps {
   product: TypeProduct;
   removeFromCart: (number: number) => void;
-  handleSetCartItemQuantity: ({}: cartItemQuantityType) => void;
+  handleSetCartItemQuantity: (id: number, quantity: number) => void;
 }
 
 const CartItem: FC<CartItemProps> = ({
@@ -22,12 +21,7 @@ const CartItem: FC<CartItemProps> = ({
   const [quantity, setQuantity] = useState<number>(1);
   const handleChange = (value: number) => {
     setQuantity(value);
-    handleSetCartItemQuantity({
-      id: product.id,
-      quantity: value,
-      price: product.price,
-      discountPercentage: product.discountPercentage,
-    });
+    handleSetCartItemQuantity(product.id, value);
   };
 
   const handleRemove = () => {

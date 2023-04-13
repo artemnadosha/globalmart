@@ -1,48 +1,49 @@
-import {TypeProduct} from "../../../../types/TypeProduct";
-import {FC} from "react";
-import styles from './ProductDropDownItem.module.scss'
-import {Button} from "../../../../UI";
-import {useContextStore} from "../../../../hooks/useContextStore";
+import { FC } from "react";
+import { useCartReducer, useFavoriteReducer } from "../../../../hooks";
+import { Button } from "../../../../UI";
+import { TypeProduct } from "../../../../types/TypeProduct";
+import s from "./ProductDropDownItem.module.scss";
 
 interface ProductDropDownItemProps {
-    product: TypeProduct
-    itemId: string
+  product: TypeProduct;
+  itemId: string;
 }
 
-const ProductDropDownItem: FC<ProductDropDownItemProps> = ({product, itemId}) => {
-    const {id, price, thumbnail, title,} = product
-    const {setCartItem, setFavoriteItem} = useContextStore()
-    const handlerRemove = () => {
-        if (itemId === 'cart') {
-            if (setCartItem) {
-                setCartItem(prevState => prevState.filter(item => item.id !== id))
-            }
-        } else {
-            if (setFavoriteItem) {
-                setFavoriteItem(prevState => prevState.filter(item => item.id !== id))
-            }
-        }
-
+const ProductDropDownItem: FC<ProductDropDownItemProps> = ({
+  product,
+  itemId,
+}) => {
+  const { id, price, thumbnail, title } = product;
+  const { removeProductFavorite } = useFavoriteReducer();
+  const { removeProductCart } = useCartReducer();
+  const handlerRemove = () => {
+    if (itemId === "cart") {
+      removeProductCart(id);
+    } else {
+      removeProductFavorite(id);
     }
+  };
 
-    return (
-        <div className={styles.wrapper}>
-            <img src={thumbnail} alt={title} className={styles.img}/>
-            <div className={styles.infoWrapper}>
-                <div className={styles.info}>
-                    <p>Name:</p>
-                    <p>{title}</p>
-                </div>
-                <div className={styles.info}>
-                    <p>Price:</p>
-                    <p>${price}</p>
-                </div>
-            </div>
-            <div className={styles.button}>
-                <Button onClick={handlerRemove} type={"default"} danger={true}>Remove</Button>
-            </div>
+  return (
+    <div className={s.wrapper}>
+      <img src={thumbnail} alt={title} className={s.img} />
+      <div className={s.infoWrapper}>
+        <div className={s.info}>
+          <p>Name:</p>
+          <p>{title}</p>
         </div>
-    );
+        <div className={s.info}>
+          <p>Price:</p>
+          <p>${price}</p>
+        </div>
+      </div>
+      <div className={s.button}>
+        <Button onClick={handlerRemove} type={"default"} danger={true}>
+          Remove
+        </Button>
+      </div>
+    </div>
+  );
 };
 
 export default ProductDropDownItem;

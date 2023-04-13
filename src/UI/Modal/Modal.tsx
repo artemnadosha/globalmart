@@ -1,17 +1,14 @@
 import { FC } from "react";
-import ModalHeader from "./ModalHeader/ModalHeader";
-import ModalContent from "./ModalContent/ModalContent";
-import ModalActions from "./ModalActions/ModalActions";
+import { useModalReducer } from "../../hooks";
+import { ModalActions, ModalContent, ModalHeader } from "./UI";
 import { Button } from "../index";
-import styles from "./Modal.module.scss";
+import s from "./Modal.module.scss";
 
 export interface ModalProps {
   style?: string;
   content: string;
   titleHeader: string;
   closeButton: boolean;
-  onClose: () => void;
-  onSubmit?: () => void;
 }
 
 const Modal: FC<ModalProps> = ({
@@ -19,25 +16,32 @@ const Modal: FC<ModalProps> = ({
   content,
   titleHeader,
   closeButton,
-  onClose,
-  onSubmit,
 }) => {
+  const { toggleIsActiveModal, changeResponseModal } = useModalReducer();
+  const handleModalClose = () => {
+    toggleIsActiveModal(null);
+  };
+
+  const handleSubmitModal = () => {
+    changeResponseModal();
+  };
+
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.overlay} onClick={onClose}></div>
-      <div className={styles.modal}>
-        <ModalHeader closeButton={closeButton} onClick={onClose}>
+    <div className={s.wrapper}>
+      <div className={s.overlay} onClick={handleModalClose}></div>
+      <div className={s.modal}>
+        <ModalHeader closeButton={closeButton} onClick={handleModalClose}>
           <h2>{titleHeader}</h2>
         </ModalHeader>
         <ModalContent>
           <p>{content}</p>
         </ModalContent>
         <ModalActions style={!!style ? style : ""}>
-          <Button type={"primary"} onClick={onSubmit}>
+          <Button type={"primary"} onClick={handleSubmitModal}>
             Ok
           </Button>
           {!closeButton && (
-            <Button type={"primary"} danger={true} onClick={onClose}>
+            <Button type={"primary"} danger={true} onClick={handleModalClose}>
               Cancel
             </Button>
           )}

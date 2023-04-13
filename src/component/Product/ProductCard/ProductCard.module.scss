@@ -1,0 +1,33 @@
+.cardWrapper {
+    max-width: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    width: fit-content;
+    background-color: white;
+    border: 1px solid gray;
+}
+
+
+.info {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 5px;
+    position: relative;
+}
+
+.action {
+    display: flex;
+    gap: 10px;
+    flex: 0;
+}
+
+.link {
+    padding: 10px;
+    font-size: 20px;
+    background-color: #008bea;
+    color: white;
+    text-align: center;
+}

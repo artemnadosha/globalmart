@@ -1,15 +1,21 @@
-import { useContextStore } from "../../hooks/useContextStore";
-import { Layout } from "antd";
+import { FC, useMemo } from "react";
 import { ProductList } from "../../component/Product";
-import styles from "./HomePage.module.scss";
+import useProductReducer from "../../hooks/useProductReducer";
+import { Content } from "../../UI";
 
-const { Content } = Layout;
-const HomePage = () => {
-  const { products } = useContextStore();
+const HomePage: FC = () => {
+  const { productItems, totalProduct, productLoading, productError } =
+    useProductReducer();
+  const products = useMemo(() => productItems, [productItems]);
 
   return (
-    <Content className={styles.wrapper}>
-      {!!products && <ProductList products={products} />}
+    <Content>
+      {!!productError && <div>{productError}</div>}
+      <ProductList
+        products={products}
+        totalProduct={totalProduct}
+        loading={productLoading}
+      />
     </Content>
   );
 };

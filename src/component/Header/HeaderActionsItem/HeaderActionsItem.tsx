@@ -1,6 +1,6 @@
 import { FC, ReactElement, useRef } from "react";
-import useHover from "../../../hooks/useHover";
 import { ProductDropDownList } from "../../Product";
+import { useHover } from "../../../hooks";
 import { TypeProduct } from "../../../types/TypeProduct";
 import { Badge } from "antd";
 
