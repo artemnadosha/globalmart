@@ -43,7 +43,6 @@ const ProductList: FC<ProductListProps> = ({
         />
       </div>
       <List
-        className={s.list}
         loading={loading}
         grid={{
           xs: 1,
@@ -55,7 +54,7 @@ const ProductList: FC<ProductListProps> = ({
         }}
         dataSource={products}
         renderItem={(product) => (
-          <List.Item>
+          <List.Item style={{ margin: 10 }}>
             <ProductCard product={product} />
           </List.Item>
         )}

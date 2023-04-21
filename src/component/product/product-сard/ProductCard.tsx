@@ -66,7 +66,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
   return (
     <Card
       className={s.cardWrapper}
-      style={{ width: 230 }}
+      // style={{ width: 230 }}
       cover={
         <ProductCardImage title={title} thumbnail={thumbnail} rating={rating} />
       }

@@ -19,10 +19,11 @@ const ProductMeta: FC<ProductMetaProps> = ({
 }) => {
   return (
     <Meta
+      style={{ margin: -15 }}
       title={correctionName(title)}
       description={
         <div className={s.description}>
-          {brand}
+          <p className={cn("verySmall", s.brand)}>{brand}</p>
           <div className={s.priceWrapper}>
             <p className={cn(s.discount, "verySmall")}>
               ${priceWithoutDiscount}
