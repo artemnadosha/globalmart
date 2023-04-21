@@ -1,9 +1,9 @@
-import Button from "./UI/Button/Button";
+import Button from "./UI/button/Button";
 // import {enumButton} from "./enum/enumButton";
 // import {useState} from "react";
-// import {ModalProps} from "./UI/Modal/Modal";
+// import {ModalProps} from "./components/modal/modal";
 // import {lorem} from "./utils/const";
-// import {Modal} from "./UI";
+// import {modal} from "./components";
 // import {enumStyle} from "./enum/enumStyle";
 //
 // const TestFileJsx = () => {
@@ -38,11 +38,11 @@ import Button from "./UI/Button/Button";
 //     return (
 //         <>
 //             <div style={{display: "flex", gap: "20px"}}>
-//                 <Button style={enumButton.PRIMARY} onClick={firstButton}><p>Open First modal</p></Button>
-//                 <Button style={enumButton.SECONDARY} onClick={secondButton}><p>Open Second modal</p></Button>
+//                 <button style={enumButton.PRIMARY} onClick={firstButton}><p>Open First modal</p></button>
+//                 <button style={enumButton.SECONDARY} onClick={secondButton}><p>Open Second modal</p></button>
 //             </div>
 //             {modalAction &&
-//                 !!contentModal && <Modal
+//                 !!contentModal && <modal
 // 					onClick={contentModal.onClick}
 // 					content={contentModal.content}
 // 					titleHeader={contentModal.titleHeader}

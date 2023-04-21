@@ -36,6 +36,7 @@ type TypeRoutes = {
   PRODUCT: string;
   CART: string;
   FAVORITE: string;
+  CHECKOUT: string;
 };
 export const ROUTES: TypeRoutes = {
   HOME: "/",
@@ -44,6 +45,7 @@ export const ROUTES: TypeRoutes = {
   PRODUCT: "/products/:categories/:id",
   CART: "cart",
   FAVORITE: "favorite",
+  CHECKOUT: "checkout",
 };
 
 export const SERVICES_LINK = {

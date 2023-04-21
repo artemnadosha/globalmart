@@ -8,7 +8,7 @@
     width: 100%;
     height: 100vh;
     background: #F7FAFC;
-    overflow-y: hidden;
+    //overflow-y: hidden;
 }
 
 h1 {
@@ -54,4 +54,11 @@ a {
     color: currentColor;
 }
 
+.custom-popup-classname {
+    max-height: 300px;
 
+
+    & ul:first-child {
+        height: 400px;
+    }
+}

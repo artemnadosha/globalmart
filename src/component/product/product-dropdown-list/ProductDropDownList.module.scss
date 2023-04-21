@@ -1,0 +1,23 @@
+.wrapper {
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    border: 1px solid gray;
+    background-color: #f7fafc;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    z-index: 5;
+    overflow-y: scroll;
+    color: black;
+}
+
+.buttonWrapper {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

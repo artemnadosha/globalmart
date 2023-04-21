@@ -1,0 +1,17 @@
+.listItem {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 12px 12px 36px 6px rgba(2, 2, 70, 0.12);
+}
+
+.price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+

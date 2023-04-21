@@ -1,19 +1,16 @@
 export {
   default as cartSlice,
   removeItemCart,
+  removeAllItemCart,
   addItemCart,
-} from "./cartSlice/cartSlice";
+} from "./cart-slice/cartSlice";
 export {
   default as modalSlice,
   responseModal,
   toggleIsActive,
-} from "./modalSlice/modalSlice";
+} from "./modal-slice/modalSlice";
 export {
   default as favoriteSlice,
   addItemFavorite,
   removeItemFavorite,
-} from "./favoriteSlice/favoriteSlice";
-export { default as productSlice } from "./productSlice/productSlice";
-export { default as fetchProduct } from "./productSlice/fetchProduct";
-export { default as fetchCategories } from "./categoriesSlice/fetchCategories";
-export { default as categoriesSlice } from "./categoriesSlice/categoriesSlice";
+} from "./favorite-slice/favoriteSlice";

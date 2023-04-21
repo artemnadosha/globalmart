@@ -11,11 +11,9 @@ interface useFavoriteReturnType {
 
 const useFavoriteReducer = (): useFavoriteReturnType => {
   const dispatch = useAppDispatch();
-  const favoriteItems = useAppSelector(
-    (state) => state.rootReducer.favorite.favorite
-  );
+  const favoriteItems = useAppSelector((state) => state.favorite.favorite);
   const quantityFavorite = useAppSelector(
-    (state) => state.rootReducer.favorite.quantityFavorite
+    (state) => state.favorite.quantityFavorite
   );
 
   const addProductFavorite = (product: TypeProduct) =>

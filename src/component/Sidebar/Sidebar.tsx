@@ -13,8 +13,6 @@ const Sidebar: FC<SidebarProps> = ({ productCategories }) => {
   const navigate = useNavigate();
   const params = useParams<{ categories: string }>();
 
-  console.log(params);
-
   const selectedKeys = useMemo(() => {
     return [!!params.categories ? params.categories : "all"];
   }, [params.categories]);

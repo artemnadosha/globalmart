@@ -12,3 +12,5 @@ export type TypeProduct = {
   images: string[];
   quantity?: number;
 };
+
+export type ProductInCheckout = Pick<TypeProduct, "id" & "title" & "quantity">;

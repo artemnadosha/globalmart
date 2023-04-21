@@ -1,0 +1,15 @@
+.wrapper {
+    width: 100%;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #bebec3;
+    border-radius: 6px;
+
+    &.active {
+        background: #EFF0F7;
+    }
+}
+
+.wrapperInfo {
+    width: 100%;
+}

@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { responseModal, toggleIsActive } from "../store/slice";
-import { resetModal } from "../store/slice/modalSlice/modalSlice";
+import { resetModal } from "../store/slice/modal-slice/modalSlice";
 
 interface useFavoriteReturnType {
   isActiveModal: boolean;
@@ -14,12 +14,10 @@ interface useFavoriteReturnType {
 const useModalReducer = (): useFavoriteReturnType => {
   const dispatch = useAppDispatch();
 
-  const isActiveModal = useAppSelector(
-    (state) => state.rootReducer.modal.isActive
-  );
-  const response = useAppSelector((state) => state.rootReducer.modal.response);
+  const isActiveModal = useAppSelector((state) => state.modal.isActive);
+  const response = useAppSelector((state) => state.modal.response);
 
-  const productId = useAppSelector((state) => state.rootReducer.modal.id);
+  const productId = useAppSelector((state) => state.modal.id);
   const toggleIsActiveModal = (id: number | null) =>
     dispatch(toggleIsActive(id));
 
