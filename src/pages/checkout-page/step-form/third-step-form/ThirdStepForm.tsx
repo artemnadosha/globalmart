@@ -4,39 +4,42 @@ import { Radio, RadioChangeEvent, Space } from "antd";
 import RadioPayoutMethod from "./radio-payout-method/RadioPayoutMethodProps";
 import { FormTitle } from "../../../../component/form-actions";
 import FormGroupInputCreditCard from "./form-group-input-credit-card/FormGroupInputCreditCard";
-import { CheckoutFormValues } from "../../../../types/StepFormTypes";
+import { useCheckoutReducer } from "../../../../hooks";
+
+import moment from "moment";
+import { UserPayoutCheckout } from "../../../../types/UserCheckoutTypes";
 
 interface ThirdStepFormProps extends PropsWithChildren {
-  onSubmit: (values: CheckoutFormValues) => void;
-  defaultValue: CheckoutFormValues;
+  nextStep: () => void;
 }
 
-const ThirdStepForm: FC<ThirdStepFormProps> = ({
-  defaultValue,
-  children,
-  onSubmit,
-}) => {
-  const [radioValue, setRadioValue] = useState(defaultValue?.payout?.method);
+const ThirdStepForm: FC<ThirdStepFormProps> = ({ children, nextStep }) => {
+  const { stateCheckout, setCheckoutPayout } = useCheckoutReducer();
+  const [radioValue, setRadioValue] = useState(stateCheckout?.payout.method);
 
   const handleOnChange = (value: RadioChangeEvent) => {
     setRadioValue(value.target.value);
   };
 
-  const handleOnSubmit = (values: CheckoutFormValues) => {
-    onSubmit(values);
+  const handleOnSubmit = (values: UserPayoutCheckout) => {
+    if (values.method === "creditCard") {
+      values.data.expiry = moment(values?.data.expiry).format("MM/YY");
+    }
+
+    setCheckoutPayout(values);
+    nextStep();
   };
+
   return (
     <Form
       name="checkout-third-step"
       onFinish={handleOnSubmit}
       initialValue={
-        defaultValue.hasOwnProperty("payout")
-          ? defaultValue
+        stateCheckout.payout.hasOwnProperty("method")
+          ? stateCheckout.payout
           : {
-              payout: {
-                data: {
-                  nameOnCard: `${defaultValue?.user?.firstName} ${defaultValue?.user?.firstName}`,
-                },
+              data: {
+                nameOnCard: `${stateCheckout?.user?.firstName} ${stateCheckout?.user?.secondName}`,
               },
             }
       }
@@ -44,7 +47,7 @@ const ThirdStepForm: FC<ThirdStepFormProps> = ({
       <FormTitle title="How would you like to pay?" />
       <FormItem
         label="Payout Method"
-        name={["payout", "method"]}
+        name="method"
         required
         rules={[{ required: true }]}
       >

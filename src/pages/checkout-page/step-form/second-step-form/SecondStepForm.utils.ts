@@ -1,6 +1,6 @@
-import { ShippingMethodTypes } from "../../../../types/StepFormTypes";
+import { ShippingMethodType } from "../../../../types/ShippingMethodType";
 
-export const shippingMethodData: ShippingMethodTypes[] = [
+export const shippingMethodData: ShippingMethodType[] = [
   {
     shippingName: "UPS",
     price: 5.99,

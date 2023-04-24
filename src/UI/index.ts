@@ -3,6 +3,7 @@ export { default as Modal } from "./modal/Modal";
 export { default as IconCart } from "./icon-cart/IconCart";
 export { default as IconFavorite } from "./icon-favorite/IconFavorite";
 export { default as IconStar } from "./icon-star/IconStar";
+export { default as IconUser } from "./icon-user/IconUser";
 export { default as CloseButtonIcon } from "./сlose-button-icon/CloseButtonIcon";
 export { default as Content } from "./content/Content";
 export { default as Pagination } from "./pagination/Pagination";

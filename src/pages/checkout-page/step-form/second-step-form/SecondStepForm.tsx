@@ -4,24 +4,20 @@ import { Radio, RadioChangeEvent } from "antd";
 import RadioShippingMethod from "./RadioShippingMethod/RadioShippingMethod";
 import { shippingMethodData } from "./SecondStepForm.utils";
 import { FormTitle } from "../../../../component/form-actions";
-import { CheckoutFormValues } from "../../../../types/StepFormTypes";
-
-interface SecondStepFormProps extends PropsWithChildren {
-  onSubmit: (values: CheckoutFormValues) => void;
-  defaultValue: CheckoutFormValues;
-}
+import { useCheckoutReducer } from "../../../../hooks";
 
 interface SubmitForm {
   shippingName: string;
 }
 
-const SecondStepForm: FC<SecondStepFormProps> = ({
-  onSubmit,
-  children,
-  defaultValue,
-}) => {
+interface SecondStepFormProps extends PropsWithChildren {
+  nextStep: () => void;
+}
+
+const SecondStepForm: FC<SecondStepFormProps> = ({ nextStep, children }) => {
+  const { stateCheckout, setCheckoutShippingMethod } = useCheckoutReducer();
   const [isActiveRadio, setIsActiveRadio] = useState(
-    defaultValue?.shippingMethod?.shippingName
+    stateCheckout?.shippingMethod?.shippingName
   );
 
   const handleChangeRadio = (e: RadioChangeEvent) => {
@@ -33,14 +29,15 @@ const SecondStepForm: FC<SecondStepFormProps> = ({
       (item) => item.shippingName === values.shippingName
     );
     if (shippingMethod) {
-      onSubmit({ shippingMethod });
+      setCheckoutShippingMethod(shippingMethod);
     }
+    nextStep();
   };
   return (
     <Form
       onFinish={handleOnFinish}
       name="checkout-second-step"
-      initialValue={defaultValue.shippingMethod}
+      initialValue={stateCheckout.shippingMethod}
     >
       <FormTitle title="How should we sent the order?" />
       <FormItem

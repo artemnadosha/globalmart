@@ -3,11 +3,7 @@ import { CartList } from "../../component/cart";
 import { Content } from "../../UI";
 
 const CartPage: FC = () => {
-  return (
-    <Content>
-      <CartList />
-    </Content>
-  );
+  return <CartList />;
 };
 
 export default CartPage;

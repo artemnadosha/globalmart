@@ -1,12 +1,11 @@
 import { FC, PropsWithChildren } from "react";
 import { Form as FormAnt } from "antd";
 import s from "./Form.module.scss";
-import { FirstStepFormTypes } from "../../types/StepFormTypes";
 
 interface FormProps extends PropsWithChildren {
   onFinish: (values: any) => void;
   name: string;
-  initialValue?: FirstStepFormTypes | object | undefined;
+  initialValue?: any;
 }
 
 /* eslint-disable no-template-curly-in-string */

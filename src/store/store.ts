@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { cartSlice, favoriteSlice, modalSlice } from "./slice";
+import { cartSlice, checkoutSlice, favoriteSlice, modalSlice } from "./slice";
 import { api } from "./api/api";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
@@ -8,6 +8,7 @@ const rootReducer = combineReducers({
   cart: cartSlice,
   favorite: favoriteSlice,
   modal: modalSlice,
+  checkout: checkoutSlice,
   [api.reducerPath]: api.reducer,
 });
 export const store = configureStore({

@@ -1,11 +1,7 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
-import { Col, Row, Space, Steps } from "antd";
+import { Col, Space, Steps } from "antd";
 import { Button, Content } from "../../UI";
 import { steps } from "./CheckoutPage.utils";
-import {
-  CheckoutFormValues,
-  FourthStepFormTypes,
-} from "../../types/StepFormTypes";
 import {
   FirstStepForm,
   FourthStepForm,
@@ -14,66 +10,36 @@ import {
 } from "./step-form";
 import ResultCheckout from "./result-checkout/ResultCheckout";
 import { useCreateCheckoutMutation } from "../../store/api/checkout.api";
-import { useCartReducer } from "../../hooks";
-import { ProductInCheckout } from "../../types/TypeProduct";
+import { useCartReducer, useCheckoutReducer } from "../../hooks";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/const";
 
 const CheckoutPage: FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [stepsState, setStepsState] = useState<CheckoutFormValues>(
-    {} as CheckoutFormValues
-  );
-  const [submit, setSubmit] = useState(false);
-  const { cartItems, removeAllCart } = useCartReducer();
+  const [initialForm, setInitialForm] = useState(true);
+  const { removeAllCart } = useCartReducer();
   const [createCheckout, { isLoading, isSuccess, isError }] =
     useCreateCheckoutMutation();
+  const { stateCheckout } = useCheckoutReducer();
 
-  const handleNextStep = (values: CheckoutFormValues) => {
+  const handleNextStep = () => {
     setCurrentStep(currentStep + 1);
-    setStepsState((prevState: CheckoutFormValues) => ({
-      ...prevState,
-      ...values,
-    }));
   };
 
   const handlePrevStep = () => {
     setCurrentStep(currentStep - 1);
   };
 
-  const handleCreateCheckout = useCallback(
-    async (stepsState: CheckoutFormValues) => {
-      await createCheckout(stepsState);
-    },
-    [createCheckout]
-  );
-
-  useEffect(() => {
-    if (currentStep === 4) {
-      handleCreateCheckout(stepsState);
-    }
-  }, [handleCreateCheckout, currentStep, stepsState]);
+  const handleCreateCheckout = useCallback(() => {
+    setInitialForm(false);
+    createCheckout(stateCheckout);
+  }, [stateCheckout, createCheckout]);
 
   useEffect(() => {
     if (isSuccess) {
       removeAllCart();
     }
   }, [isSuccess, removeAllCart]);
-
-  const handleSubmit = (values: { orderInfo: FourthStepFormTypes }) => {
-    handleNextStep(values);
-    const checkoutItems: ProductInCheckout[] = cartItems.map((item) => ({
-      id: item.id,
-      title: item.title,
-      quantity: item.quantity,
-    }));
-
-    setStepsState((prevState) => ({
-      ...prevState,
-      product: checkoutItems,
-    }));
-    setSubmit(true);
-  };
 
   const actionsButton = (
     <Space.Compact style={{ width: "100%", justifyContent: "center" }}>
@@ -98,68 +64,52 @@ const CheckoutPage: FC = () => {
   }));
 
   return (
-    <Row gutter={24} style={{ marginLeft: 0, marginRight: 0 }}>
-      <Col span={20} offset={2}>
+    <>
+      {initialForm && (
         <Content>
-          {!submit && (
-            <>
-              <Col span={4}>
-                {" "}
-                <Button type="link">
-                  <Link to={ROUTES.HOME}>GO TO HOME</Link>
-                </Button>
-              </Col>
-              <Steps
-                current={currentStep}
-                items={itemsStep}
-                style={{ marginTop: "20px" }}
-              />
-              {currentStep === 0 && (
-                <FirstStepForm
-                  onSubmit={handleNextStep}
-                  defaultValue={stepsState}
-                >
-                  {actionsButton}
-                </FirstStepForm>
-              )}
-              {currentStep === 1 && (
-                <SecondStepForm
-                  onSubmit={handleNextStep}
-                  defaultValue={stepsState}
-                >
-                  {actionsButton}
-                </SecondStepForm>
-              )}
-              {currentStep === 2 && (
-                <ThirdStepForm
-                  defaultValue={stepsState}
-                  onSubmit={handleNextStep}
-                >
-                  {actionsButton}
-                </ThirdStepForm>
-              )}
-              {currentStep === 3 && (
-                <FourthStepForm
-                  defaultValue={stepsState}
-                  onSubmit={handleSubmit}
-                >
-                  {actionsButton}
-                </FourthStepForm>
-              )}
-            </>
+          <Col span={4}>
+            {" "}
+            <Button type="link">
+              <Link to={ROUTES.HOME}>GO TO HOME</Link>
+            </Button>
+          </Col>
+          <Steps
+            current={currentStep}
+            items={itemsStep}
+            style={{ marginTop: "20px" }}
+          />
+          {currentStep === 0 && (
+            <FirstStepForm nextStep={handleNextStep}>
+              {actionsButton}
+            </FirstStepForm>
           )}
-          {isLoading && <div>loading</div>}
-          {!isLoading && (isSuccess || isError) && (
-            <Col span={8} offset={8}>
-              <ResultCheckout
-                status={isSuccess || !!cartItems.length}
-                orderNumber={stepsState?.orderInfo?.orderNumber}
-              />
-            </Col>
+          {currentStep === 1 && (
+            <SecondStepForm nextStep={handleNextStep}>
+              {actionsButton}
+            </SecondStepForm>
+          )}
+          {currentStep === 2 && (
+            <ThirdStepForm nextStep={handleNextStep}>
+              {actionsButton}
+            </ThirdStepForm>
+          )}
+          {currentStep === 3 && (
+            <FourthStepForm submitForm={handleCreateCheckout}>
+              {actionsButton}
+            </FourthStepForm>
           )}
         </Content>
-      </Col>
-    </Row>
+      )}
+      {isLoading && <div>loading</div>}
+      {!isLoading && (isSuccess || isError) && (
+        <Col span={8} offset={8}>
+          <ResultCheckout
+            status={isSuccess}
+            orderNumber={stateCheckout?.orderInfo?.orderNumber}
+          />
+        </Col>
+      )}
+    </>
   );
 };
 

@@ -22,7 +22,7 @@ const ProductsPage: FC = () => {
   });
 
   return (
-    <Content>
+    <>
       {!!error && <div>test</div>}
       {data && totalProduct && (
         <ProductList
@@ -31,7 +31,7 @@ const ProductsPage: FC = () => {
           loading={isLoading}
         />
       )}
-    </Content>
+    </>
   );
 };
 

@@ -3,7 +3,6 @@ import { Result, Space } from "antd";
 import { Button } from "../../../UI";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../utils/const";
-import button from "../../../UI/button/Button";
 
 interface ResultCheckoutProps {
   status: boolean;

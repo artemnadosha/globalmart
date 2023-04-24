@@ -17,7 +17,7 @@ const FormGroupInputCreditCard: FC = () => {
         }}
       >
         <FormInputString
-          name={["payout", "data", "nameOnCard"]}
+          name={["data", "nameOnCard"]}
           required={true}
           label="Name on card"
           placeholder="Enter the cardholder's name"
@@ -25,7 +25,7 @@ const FormGroupInputCreditCard: FC = () => {
         />
         <FormInputDate
           width="40%"
-          name={["payout", "data", "expiry"]}
+          name={["data", "expiry"]}
           label="Expiry"
           picker="month"
           format={"monthFormat"}
@@ -33,13 +33,13 @@ const FormGroupInputCreditCard: FC = () => {
       </Space.Compact>
       <Space.Compact style={{ width: "100%", gap: "10%" }}>
         <FormInputCreditCard
-          name={["payout", "data", "cardNumber"]}
+          name={["data", "cardNumber"]}
           label="Card number"
           required={true}
           width="100%"
         />
         <FormInputNumber
-          name={["payout", "data", "cvv"]}
+          name={["data", "cvv"]}
           width="40%"
           label="CVV"
           required={true}

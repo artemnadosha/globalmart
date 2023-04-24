@@ -1,6 +1,3 @@
-import { useCallback } from "react";
-import { CheckoutFormValues } from "../../types/StepFormTypes";
-
 export const steps = [
   {
     title: "Welcome",

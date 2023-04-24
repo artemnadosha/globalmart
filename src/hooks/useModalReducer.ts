@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { responseModal, toggleIsActive } from "../store/slice";
-import { resetModal } from "../store/slice/modal-slice/modalSlice";
+import { resetModal } from "../store/slice/modal-slice/modal.slice";
 
 interface useFavoriteReturnType {
   isActiveModal: boolean;

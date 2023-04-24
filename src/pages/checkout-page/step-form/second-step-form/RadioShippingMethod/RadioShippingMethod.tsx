@@ -2,10 +2,10 @@ import { FC } from "react";
 import { Radio } from "antd";
 import s from "./RadioShippingMethod.module.scss";
 import cn from "classnames";
-import { ShippingMethodTypes } from "../../../../../types/StepFormTypes";
+import { ShippingMethodType } from "../../../../../types/ShippingMethodType";
 
 interface InputRadioShippingMethodProps {
-  shippingItem: ShippingMethodTypes;
+  shippingItem: ShippingMethodType;
   value: string;
   isActive?: string;
   name: string;

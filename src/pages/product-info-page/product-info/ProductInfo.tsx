@@ -3,9 +3,6 @@ import { FC, MouseEvent, useState } from "react";
 import styles from "./ProductPage.module.scss";
 import { Button, IconStar, Image } from "../../../UI";
 import cn from "classnames";
-import { useAppDispatch, useAppSelector } from "../../../store/store";
-import { addItemCart } from "../../../store/slice";
-import { $CombinedState } from "redux";
 import { useCartReducer } from "../../../hooks";
 
 interface ProductInfoProps {
@@ -14,14 +11,11 @@ interface ProductInfoProps {
 
 const ProductInfo: FC<ProductInfoProps> = ({ product }) => {
   const {
-    id,
-    discountPercentage,
     rating,
     brand,
     title,
     thumbnail,
     stock,
-    price,
     images,
     category,
     description,

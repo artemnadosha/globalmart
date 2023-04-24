@@ -1,0 +1,13 @@
+.radioGroup {
+
+    & .buttonCategory {
+        border: none;
+        border-radius: 10px;
+        height: 100%;
+        background-color: transparent;
+
+        &::before {
+            display: none;
+        }
+    }
+}
