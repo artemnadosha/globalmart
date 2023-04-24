@@ -1941,239 +1941,341 @@
     }
   ],
   "categories": [
-    "gadget-and-electronics",
-    "beauty-and-personal-care",
-    "home-and-kitchen",
-    "fashion",
-    "accessories",
-    "transportation"
+    {
+      "category": "gadget-and-electronics",
+      "subCategories": [
+        "smartphones",
+        "laptops",
+        "automotive"
+      ],
+      "brand": [
+        "Apple",
+        "Apple",
+        "Samsung",
+        "OPPO",
+        "Huawei",
+        "Apple",
+        "Samsung",
+        "Microsoft Surface",
+        "Infinix",
+        "HP Pavilion",
+        "Car Aux",
+        "W1209 DC12V",
+        "TC Reusable",
+        "TC Reusable",
+        "Neon LED Light"
+      ]
+    },
+    {
+      "category": "beauty-and-personal-care",
+      "subCategories": [
+        "fragrances",
+        "skincare"
+      ],
+      "brand": [
+        "Impression of Acqua Di Gio",
+        "Royal_Mirage",
+        "Fog Scent Xpressio",
+        "Al Munakh",
+        "Lord - Al-Rehab",
+        "L'Oreal Paris",
+        "Hemani Tea",
+        "Dermive",
+        "ROREC White Rice",
+        "Fair & Clear"
+      ]
+    },
+    {
+      "category": "home-and-kitchen",
+      "subCategories": [
+        "groceries",
+        "home-decoration",
+        "furniture",
+        "lighting"
+      ],
+      "brand": [
+        "Saaf & Khaas",
+        "Bake Parlor Big",
+        "Baking Food Items",
+        "fauji",
+        "Dry Rose",
+        "Boho Decor",
+        "Flying Wooden",
+        "LED Lights",
+        "luxury palace",
+        "Golden",
+        "Furniture Bed Set",
+        "Ratttan Outdoor",
+        "Kitchen Shelf",
+        "Multi Purpose",
+        "AmnaMart",
+        "lightingbrilliance",
+        "Ifei Home",
+        "DADAWU",
+        "Ifei Home",
+        "YIOSI"
+      ]
+    },
+    {
+      "category": "fashion",
+      "subCategories": [
+        "tops",
+        "womens-dresses",
+        "womens-shoes",
+        "mens-shirts",
+        "mens-shoes",
+        "womens-bags"
+      ],
+      "brand": [
+        "Professional Wear",
+        "Soft Cotton",
+        "Soft Cotton",
+        "Top Sweater",
+        "Top Sweater",
+        "RED MICKY MOUSE..",
+        "Digital Printed",
+        "Ghazi Fabric",
+        "Ghazi Fabric",
+        "IELGY",
+        "IELGY fashion",
+        "Synthetic Leather",
+        "Sandals Flip Flops",
+        "Maasai Sandals",
+        "Arrivals Genuine",
+        "Vintage Apparel",
+        "FREE FIRE",
+        "Vintage Apparel",
+        "The Warehouse",
+        "The Warehouse",
+        "Sneakers",
+        "Rubber",
+        "The Warehouse",
+        "Sneakers",
+        "Sneakers",
+        "LouisWill",
+        "LouisWill",
+        "Bracelet",
+        "Copenhagen Luxe",
+        "Steal Frame"
+      ]
+    },
+    {
+      "category": "accessories",
+      "subCategories": [
+        "mens-watches",
+        "womens-watches",
+        "womens-jewellery",
+        "sunglasses"
+      ],
+      "brand": [
+        "Naviforce",
+        "SKMEI 9117",
+        "SKMEI 9117",
+        "Strap Skeleton",
+        "Stainless",
+        "Eastern Watches",
+        "Eastern Watches",
+        "Luxury Digital",
+        "Watch Pearls",
+        "Bracelet",
+        "Darojay",
+        "Copenhagen Luxe",
+        "Fashion Jewellery",
+        "Fashion Jewellery",
+        "Cuff Butterfly",
+        "Designer Sun Glasses",
+        "Designer Sun Glasses",
+        "mastar watch",
+        "mastar watch",
+        "LouisWill"
+      ]
+    },
+    {
+      "category": "transportation",
+      "subCategories": [
+        "motorcycle"
+      ],
+      "brand": [
+        "METRO 70cc Motorcycle - MR70",
+        "BRAVE BULL",
+        "shock absorber",
+        "JIEPOLLY",
+        "Xiangle"
+      ]
+    }
   ],
   "checkout": [
     {
-      "user": {
-        "firstName": "TEst1",
-        "secondName": "test1",
-        "age": 24,
-        "phone": "38024124124",
-        "email": "sdadasdasd12312@dasd.asdsad",
-        "address": {
-          "city": "sdaasd",
-          "street": "sadasd"
-        },
-        "userId": "unknown"
-      },
-      "shippingMethod": {
-        "shippingName": "UPS",
-        "price": 5.99,
-        "supportingText": "USPS 1st Class With Tracking",
-        "deliveryTime": "5 - 13 days"
-      },
-      "payout": {
-        "method": "creditCard",
-        "data": {
-          "nameOnCard": "TEst1 TEst1",
-          "expiry": "2023-01-21T09:00:26.240Z",
-          "cardNumber": "1241241242414123",
-          "cvv": "242"
-        }
-      },
-      "orderInfo": {
-        "checkPrivacyPolicy": true,
-        "orderNumber": 1682064034265
-      },
-      "product": [
-        {
-          "id": 1,
-          "title": "iPhone 9",
-          "quantity": 1
-        },
-        {
-          "id": 2,
-          "title": "iPhone X",
-          "quantity": 1
-        }
-      ],
+      "user": {},
+      "shippingMethod": {},
+      "payout": {},
+      "orderInfo": {},
+      "product": [],
       "id": 1
-    },
+    }
+  ],
+  "products-info": [
     {
-      "user": {
-        "firstName": "ыфвфы",
-        "secondName": "ыфвывф",
-        "age": 24,
-        "phone": "380124124141",
-        "email": "sdadasdasd12312@dasd.asdsad",
-        "address": {
-          "city": "ыфвфыв",
-          "street": "фыывф"
-        },
-        "userId": "unknown"
-      },
-      "shippingMethod": {
-        "shippingName": "DHL",
-        "price": 6.99,
-        "supportingText": "Business Parcell with Tracking",
-        "deliveryTime": "1-3 days"
-      },
-      "payout": {
-        "method": "paypal"
-      },
-      "orderInfo": {
-        "checkPrivacyPolicy": true,
-        "orderNumber": 1682064388526
-      },
-      "product": [
-        {
-          "id": 14,
-          "title": "Non-Alcoholic Concentrated Perfume Oil",
-          "quantity": 1
-        }
+      "category": "gadget-and-electronics",
+      "subCategories": [
+        "smartphones",
+        "laptops",
+        "automotive"
       ],
-      "id": 2
+      "brand": [
+        "Apple",
+        "Apple",
+        "Samsung",
+        "OPPO",
+        "Huawei",
+        "Apple",
+        "Samsung",
+        "Microsoft Surface",
+        "Infinix",
+        "HP Pavilion",
+        "Car Aux",
+        "W1209 DC12V",
+        "TC Reusable",
+        "TC Reusable",
+        "Neon LED Light"
+      ]
     },
     {
-      "user": {
-        "firstName": "asdasd",
-        "secondName": "sadd",
-        "age": 24,
-        "phone": "380124124124",
-        "email": "asdasd@dasd.a.das",
-        "address": {
-          "city": "sadsdaasd",
-          "street": "asdasd"
-        },
-        "userId": "unknown"
-      },
-      "shippingMethod": {
-        "shippingName": "DHL",
-        "price": 6.99,
-        "supportingText": "Business Parcell with Tracking",
-        "deliveryTime": "1-3 days"
-      },
-      "payout": {
-        "method": "paypal"
-      },
-      "orderInfo": {
-        "checkPrivacyPolicy": true,
-        "orderNumber": 1682064710667
-      },
-      "product": [],
-      "id": 3
+      "category": "beauty-and-personal-care",
+      "subCategories": [
+        "fragrances",
+        "skincare"
+      ],
+      "brand": [
+        "Impression of Acqua Di Gio",
+        "Royal_Mirage",
+        "Fog Scent Xpressio",
+        "Al Munakh",
+        "Lord - Al-Rehab",
+        "L'Oreal Paris",
+        "Hemani Tea",
+        "Dermive",
+        "ROREC White Rice",
+        "Fair & Clear"
+      ]
     },
     {
-      "user": {
-        "firstName": "asdasd",
-        "secondName": "sadd",
-        "age": 24,
-        "phone": "380124124124",
-        "email": "asdasd@dasd.a.das",
-        "address": {
-          "city": "sadsdaasd",
-          "street": "asdasd"
-        },
-        "userId": "unknown"
-      },
-      "shippingMethod": {
-        "shippingName": "DHL",
-        "price": 6.99,
-        "supportingText": "Business Parcell with Tracking",
-        "deliveryTime": "1-3 days"
-      },
-      "payout": {
-        "method": "paypal"
-      },
-      "orderInfo": {
-        "checkPrivacyPolicy": true,
-        "orderNumber": 1682064710667
-      },
-      "product": [],
-      "id": 4
+      "category": "home-and-kitchen",
+      "subCategories": [
+        "groceries",
+        "home-decoration",
+        "furniture",
+        "lighting"
+      ],
+      "brand": [
+        "Saaf & Khaas",
+        "Bake Parlor Big",
+        "Baking Food Items",
+        "fauji",
+        "Dry Rose",
+        "Boho Decor",
+        "Flying Wooden",
+        "LED Lights",
+        "luxury palace",
+        "Golden",
+        "Furniture Bed Set",
+        "Ratttan Outdoor",
+        "Kitchen Shelf",
+        "Multi Purpose",
+        "AmnaMart",
+        "lightingbrilliance",
+        "Ifei Home",
+        "DADAWU",
+        "Ifei Home",
+        "YIOSI"
+      ]
     },
     {
-      "user": {
-        "firstName": "dada",
-        "secondName": "sdad",
-        "age": 24,
-        "phone": "380124124124",
-        "email": "sadasdad@asdasd.asd",
-        "address": {
-          "city": "asdasd",
-          "street": "asdas"
-        },
-        "userId": "unknown"
-      },
-      "shippingMethod": {
-        "shippingName": "UPS",
-        "price": 5.99,
-        "supportingText": "USPS 1st Class With Tracking",
-        "deliveryTime": "5 - 13 days"
-      },
-      "payout": {
-        "method": "applePay"
-      },
-      "orderInfo": {
-        "checkPrivacyPolicy": true,
-        "orderNumber": 1682065184321
-      },
-      "product": [],
-      "id": 5
+      "category": "fashion",
+      "subCategories": [
+        "tops",
+        "womens-dresses",
+        "womens-shoes",
+        "mens-shirts",
+        "mens-shoes",
+        "womens-bags"
+      ],
+      "brand": [
+        "Professional Wear",
+        "Soft Cotton",
+        "Soft Cotton",
+        "Top Sweater",
+        "Top Sweater",
+        "RED MICKY MOUSE..",
+        "Digital Printed",
+        "Ghazi Fabric",
+        "Ghazi Fabric",
+        "IELGY",
+        "IELGY fashion",
+        "Synthetic Leather",
+        "Sandals Flip Flops",
+        "Maasai Sandals",
+        "Arrivals Genuine",
+        "Vintage Apparel",
+        "FREE FIRE",
+        "Vintage Apparel",
+        "The Warehouse",
+        "The Warehouse",
+        "Sneakers",
+        "Rubber",
+        "The Warehouse",
+        "Sneakers",
+        "Sneakers",
+        "LouisWill",
+        "LouisWill",
+        "Bracelet",
+        "Copenhagen Luxe",
+        "Steal Frame"
+      ]
     },
     {
-      "user": {
-        "firstName": "dasdas",
-        "secondName": "sadasdasd",
-        "age": 24,
-        "phone": "380124124124",
-        "email": "asdasd@dasd.asda",
-        "address": {
-          "city": "asdad",
-          "street": "asdasd"
-        },
-        "userId": "unknown"
-      },
-      "shippingMethod": {
-        "shippingName": "DHL",
-        "price": 6.99,
-        "supportingText": "Business Parcell with Tracking",
-        "deliveryTime": "1-3 days"
-      },
-      "payout": {
-        "method": "applePay"
-      },
-      "orderInfo": {
-        "checkPrivacyPolicy": true,
-        "orderNumber": 1682065283727
-      },
-      "product": [],
-      "id": 6
+      "category": "accessories",
+      "subCategories": [
+        "mens-watches",
+        "womens-watches",
+        "womens-jewellery",
+        "sunglasses"
+      ],
+      "brand": [
+        "Naviforce",
+        "SKMEI 9117",
+        "SKMEI 9117",
+        "Strap Skeleton",
+        "Stainless",
+        "Eastern Watches",
+        "Eastern Watches",
+        "Luxury Digital",
+        "Watch Pearls",
+        "Bracelet",
+        "Darojay",
+        "Copenhagen Luxe",
+        "Fashion Jewellery",
+        "Fashion Jewellery",
+        "Cuff Butterfly",
+        "Designer Sun Glasses",
+        "Designer Sun Glasses",
+        "mastar watch",
+        "mastar watch",
+        "LouisWill"
+      ]
     },
     {
-      "user": {
-        "firstName": "dasdas",
-        "secondName": "sadasdasd",
-        "age": 24,
-        "phone": "380124124124",
-        "email": "asdasd@dasd.asda",
-        "address": {
-          "city": "asdad",
-          "street": "asdasd"
-        },
-        "userId": "unknown"
-      },
-      "shippingMethod": {
-        "shippingName": "DHL",
-        "price": 6.99,
-        "supportingText": "Business Parcell with Tracking",
-        "deliveryTime": "1-3 days"
-      },
-      "payout": {
-        "method": "applePay"
-      },
-      "orderInfo": {
-        "checkPrivacyPolicy": true,
-        "orderNumber": 1682065283727
-      },
-      "product": [],
-      "id": 7
+      "category": "transportation",
+      "subCategories": [
+        "motorcycle"
+      ],
+      "brand": [
+        "METRO 70cc Motorcycle - MR70",
+        "BRAVE BULL",
+        "shock absorber",
+        "JIEPOLLY",
+        "Xiangle"
+      ]
     }
   ]
 }

@@ -32,9 +32,7 @@ const AppRouter: FC = () => {
         path="/*"
         element={<Navigate to={`${ROUTES.PRODUCTS}/all?page=1`} />}
       />
-      {!!cartItems.length && (
-        <Route path={ROUTES.CHECKOUT} element={<CheckoutPage />} />
-      )}
+      <Route path={ROUTES.CHECKOUT} element={<CheckoutPage />} />
     </Routes>
   );
 };

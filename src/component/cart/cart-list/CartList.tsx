@@ -32,35 +32,33 @@ const CartList: FC = () => {
   };
 
   return (
-    <Content>
-      <Row gutter={24}>
-        <Col span={16}>
-          <List
-            pagination={{
-              current: pagination,
-              onChange: handlePaginationChange,
-              pageSize: 4,
-              total: cartItems.length,
-            }}
-            dataSource={cartItems.slice((pagination - 1) * 4, pagination * 4)}
-            renderItem={(cartItem) => (
-              <CartItem
-                key={cartItem.id}
-                product={cartItem}
-                removeFromCart={removeProductCart}
-                handleSetCartItemQuantity={handleSetCartItemQuantity}
-              />
-            )}
-          />
-        </Col>
-        <Col span={6} offset={2}>
-          <CartCheckout
-            price={priceWithoutDiscountAll}
-            discount={valueDiscountPercentageAll}
-          />
-        </Col>
-      </Row>
-    </Content>
+    <Row gutter={24}>
+      <Col span={16}>
+        <List
+          pagination={{
+            current: pagination,
+            onChange: handlePaginationChange,
+            pageSize: 4,
+            total: cartItems.length,
+          }}
+          dataSource={cartItems.slice((pagination - 1) * 4, pagination * 4)}
+          renderItem={(cartItem) => (
+            <CartItem
+              key={cartItem.id}
+              product={cartItem}
+              removeFromCart={removeProductCart}
+              handleSetCartItemQuantity={handleSetCartItemQuantity}
+            />
+          )}
+        />
+      </Col>
+      <Col span={6} offset={2}>
+        <CartCheckout
+          price={priceWithoutDiscountAll}
+          discount={valueDiscountPercentageAll}
+        />
+      </Col>
+    </Row>
   );
 };
 

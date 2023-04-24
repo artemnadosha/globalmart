@@ -1,5 +1,5 @@
 import { ColumnsType } from "antd/es/table";
-import { TypeProduct } from "../../../../types/TypeProduct";
+import { ProductInCheckout, TypeProduct } from "../../../../types/TypeProduct";
 
 export const columns: ColumnsType<TypeProduct> = [
   {
@@ -12,3 +12,10 @@ export const columns: ColumnsType<TypeProduct> = [
     dataIndex: "quantity",
   },
 ];
+
+export const checkoutItem = (cartItems: TypeProduct[]): ProductInCheckout[] =>
+  cartItems.map((item) => ({
+    id: item.id,
+    title: item.title,
+    quantity: item.quantity,
+  }));

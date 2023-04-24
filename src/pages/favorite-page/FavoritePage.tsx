@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
 import { ProductList } from "../../component/product";
 import { useFavoriteReducer } from "../../hooks";
-import { Content } from "../../UI";
 
 const FavoritePage: FC = () => {
   const { favoriteItems } = useFavoriteReducer();
@@ -15,13 +14,11 @@ const FavoritePage: FC = () => {
     setFavoriteSlice(favoriteItems.slice(slice, skip));
   };
   return (
-    <Content>
-      <ProductList
-        products={favoriteSlice}
-        totalProduct={favoriteItems.length}
-        onClick={handleChangePage}
-      />
-    </Content>
+    <ProductList
+      products={favoriteSlice}
+      totalProduct={favoriteItems.length}
+      onClick={handleChangePage}
+    />
   );
 };
 

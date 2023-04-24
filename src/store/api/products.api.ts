@@ -1,5 +1,6 @@
 import { api } from "./api";
 import { TypeProduct } from "../../types/TypeProduct";
+import { GetRequestProductInfo } from "../../types/GetRequestCategories";
 
 interface GetProductsProps {
   category: string;
@@ -26,9 +27,9 @@ export const productsApi = api.injectEndpoints({
       }),
       transformResponse: (response: TypeProduct[]): number => response.length,
     }),
-    getProductsCategories: builder.query<string[], void>({
+    getProductsInfo: builder.query<GetRequestProductInfo[], void>({
       query: () => ({
-        url: "/categories",
+        url: "/products-info",
       }),
     }),
   }),
@@ -38,5 +39,5 @@ export const {
   useGetProductsQuery,
   useGetProductByIdQuery,
   useGetProductsTotalQuery,
-  useGetProductsCategoriesQuery,
+  useGetProductsInfoQuery,
 } = productsApi;

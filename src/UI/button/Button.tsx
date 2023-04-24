@@ -3,11 +3,12 @@ import { Button as ButtonAnt } from "antd";
 
 interface ButtonProps extends PropsWithChildren {
   onClick?: () => void;
-  type: "primary" | "default" | "dashed" | "link";
+  type: "primary" | "default" | "dashed" | "link" | "text";
   ghost?: boolean;
   danger?: boolean;
   htmlType?: "button" | "submit" | "reset";
   isLoading?: boolean;
+  textAlign?: "left" | "right" | "center";
 }
 
 const Button: FC<ButtonProps> = ({
@@ -18,10 +19,11 @@ const Button: FC<ButtonProps> = ({
   ghost,
   htmlType,
   isLoading,
+  textAlign,
 }) => {
   return (
     <ButtonAnt
-      style={{ width: "100%" }}
+      style={{ width: "100%", textAlign }}
       onClick={onClick}
       type={type}
       danger={danger}

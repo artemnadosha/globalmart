@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import s from "./InputPhoneField.module.scss";
@@ -10,10 +10,7 @@ interface PhoneInputFieldProps {
 }
 
 const InputPhoneField: FC<PhoneInputFieldProps> = ({ value, onChange }) => {
-  const [phone, setPhone] = useState("");
-
   const handleOnChange = (value: string) => {
-    setPhone(value);
     onChange && onChange(value);
   };
 

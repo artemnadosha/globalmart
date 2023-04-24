@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from "react";
 import { Collapse, Table } from "antd";
 import { Button, Form, FormItem } from "../../../../UI";
-import { useCartReducer } from "../../../../hooks";
+import { useCartReducer, useCheckoutReducer } from "../../../../hooks";
 import {
   sumCalculateDiscountAmount,
   sumCalculatePriceWithoutDiscount,
@@ -10,46 +10,43 @@ import {
   FormInputCheckedPrivacyPolicy,
   FormTitle,
 } from "../../../../component/form-actions";
-import { columns } from "./FourthStepForm.utils";
+import { checkoutItem, columns } from "./FourthStepForm.utils";
 import ContentCheckoutSummary from "./content-checkout-summary/ContentCheckoutSummary";
 import HeaderCheckoutSummary from "./header-checkout-summary/HeaderCheckoutSummary";
 import HeaderOrderReview from "./header-order-review/HeaderOrderReview";
-import { FourthStepFormTypes } from "../../../../types/StepFormTypes";
 
 const { Panel } = Collapse;
 
 interface FourthStepFormProps extends PropsWithChildren {
-  defaultValue: any;
-  onSubmit: (values: { orderInfo: FourthStepFormTypes }) => void;
+  submitForm: () => void;
 }
 
-const FourthStepForm: FC<FourthStepFormProps> = ({
-  defaultValue,
-  children,
-  onSubmit,
-}) => {
+const FourthStepForm: FC<FourthStepFormProps> = ({ submitForm, children }) => {
   const { cartItems } = useCartReducer();
+  const { stateCheckout, setCheckoutOrderInfo, setCheckoutProduct } =
+    useCheckoutReducer();
   const discount = sumCalculateDiscountAmount(cartItems);
   const subtotal = sumCalculatePriceWithoutDiscount(cartItems);
 
-  const shippingPrice = !!defaultValue.shippingMethod.price
-    ? defaultValue.shippingMethod.price
+  const shippingPrice = !!stateCheckout.shippingMethod.price
+    ? stateCheckout.shippingMethod.price
     : 0;
 
   const onFinish = (values: { checkPrivacyPolicy: boolean }) => {
-    onSubmit({
-      orderInfo: {
-        checkPrivacyPolicy: values.checkPrivacyPolicy,
-        orderNumber: new Date().getTime(),
-      },
+    setCheckoutOrderInfo({
+      checkPrivacyPolicy: values.checkPrivacyPolicy,
+      orderNumber: new Date().getTime(),
     });
+    setCheckoutProduct(checkoutItem(cartItems));
+
+    submitForm();
   };
 
   return (
     <Form
       onFinish={onFinish}
       name="checkout-fourth-step"
-      initialValue={defaultValue}
+      initialValue={stateCheckout.orderInfo}
     >
       <FormTitle title="Confirm and enjoy your order" />
       <Collapse accordion>
@@ -62,7 +59,7 @@ const FourthStepForm: FC<FourthStepFormProps> = ({
             rowKey="id"
             dataSource={cartItems}
             size="middle"
-            pagination={{ pageSize: 5 }}
+            pagination={{ pageSize: 4 }}
           />
         </Panel>
         <Panel header={<HeaderCheckoutSummary />} key="2">

@@ -1,14 +1,9 @@
-.cart {
+.icon {
     color: gray;
     transition: .3s;
     cursor: pointer;
 
     &:hover {
-
-        color: #008bea;
-    }
-
-    &.active {
         color: #008bea;
     }
 }

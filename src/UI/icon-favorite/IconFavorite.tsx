@@ -10,9 +10,11 @@ interface IconHeartProps {
 
 const IconFavorite: FC<IconHeartProps> = ({ activeIcon, onClick }) => {
   return (
-    <div className={cn(s.heart, activeIcon && s.active)} onClick={onClick}>
-      <LikeOutlined style={{ fontSize: "1.4rem" }} />
-    </div>
+    <LikeOutlined
+      style={{ fontSize: "1.4rem" }}
+      className={cn(s.favorite, activeIcon && s.active)}
+      onClick={onClick}
+    />
   );
 };
 

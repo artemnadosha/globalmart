@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderActionsItem from "./header-actions-item/HeaderActionsItem";
-import { IconCart, IconFavorite } from "../../UI";
+import { Button, Content, IconCart, IconFavorite, IconUser } from "../../UI";
 import { useCartReducer, useFavoriteReducer } from "../../hooks";
 
 import { ROUTES } from "../../utils/const";
@@ -20,12 +20,13 @@ const Header: FC = () => {
   };
 
   return (
-    <HeaderAnt className={s.header}>
+    <HeaderAnt className={s.wrapperHeader}>
       <Col span={20} offset={2} style={{ padding: 0 }}>
         <div className={s.header}>
           <div onClick={handleBack}>HOME</div>
           <div>SEARCH</div>
           <div className={s.wrapperActions}>
+            <IconUser />
             <HeaderActionsItem
               products={favoriteItems}
               icon={<IconFavorite />}
@@ -40,6 +41,7 @@ const Header: FC = () => {
               textButton="Go to cart"
               colorBadge="blue"
             />
+            <Button type="primary">Sign In</Button>
           </div>
         </div>
       </Col>

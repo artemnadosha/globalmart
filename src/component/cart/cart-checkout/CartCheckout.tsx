@@ -2,7 +2,6 @@ import { FC } from "react";
 import { Button, Form } from "../../../UI";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../utils/const";
-import s from "./CartCheckout.module.scss";
 import { FormTitle } from "../../form-actions";
 
 interface CartCheckoutProps {

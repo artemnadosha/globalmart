@@ -1,10 +1,7 @@
 import React, { FC, PropsWithChildren } from "react";
 import { Space } from "antd";
-import { Button, Form, FormItem } from "../../../../UI";
-import {
-  CheckoutFormValues,
-  FirstStepFormTypes,
-} from "../../../../types/StepFormTypes";
+import { Form, FormItem } from "../../../../UI";
+
 import {
   FormInputEmail,
   FormInputNumber,
@@ -12,27 +9,29 @@ import {
   FormInputString,
   FormTitle,
 } from "../../../../component/form-actions";
+import {
+  UserInfoType,
+  UserUnknownInCheckout,
+} from "../../../../types/UserTypes";
+import { useCheckoutReducer } from "../../../../hooks";
 
-interface StepFirstFormProps extends PropsWithChildren {
-  onSubmit: (values: { user: FirstStepFormTypes }) => void;
-  defaultValue?: CheckoutFormValues;
+interface FirstStepFromProps extends PropsWithChildren {
+  nextStep: () => void;
 }
 
-const FirstStepForm: FC<StepFirstFormProps> = ({
-  onSubmit,
-  children,
-  defaultValue,
-}) => {
-  const onFinish = (values: { user: FirstStepFormTypes }) => {
-    values.user.userId = "unknown";
-    onSubmit(values);
+const FirstStepForm: FC<FirstStepFromProps> = ({ nextStep, children }) => {
+  const { stateCheckout, setCheckoutUserInfo } = useCheckoutReducer();
+  const onFinish = (values: { user: UserInfoType | UserUnknownInCheckout }) => {
+    values.user.id = "unknown";
+    setCheckoutUserInfo(values.user);
+    nextStep();
   };
 
   return (
     <Form
       name="checkout-first-step"
       onFinish={onFinish}
-      initialValue={defaultValue}
+      initialValue={stateCheckout}
     >
       <FormTitle title="Where should we sent the order?" />
       <FormInputString

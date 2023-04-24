@@ -1,7 +1,7 @@
 import { FC } from "react";
 import cn from "classnames";
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import styles from "./IconCart.module.scss";
+import s from "./IconCart.module.scss";
 
 interface IconBasketProps {
   onClick?: () => void;
@@ -10,12 +10,11 @@ interface IconBasketProps {
 
 const IconCart: FC<IconBasketProps> = ({ activeIcon, onClick }) => {
   return (
-    <div
-      className={cn(styles.basket, activeIcon && styles.active)}
+    <ShoppingCartOutlined
+      style={{ fontSize: "1.4rem" }}
+      className={cn(s.cart, activeIcon && s.active)}
       onClick={onClick}
-    >
-      <ShoppingCartOutlined style={{ fontSize: "1.4rem" }} />
-    </div>
+    />
   );
 };
 

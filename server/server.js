@@ -15,15 +15,72 @@ async function main() {
     const dbData = await fs.readFile(dbFilePath, "utf8");
     const db = JSON.parse(dbData);
 
-    const categories = products.reduce((acc, product) => {
-      if (!acc.includes(product.category)) {
-        acc.push(product.category);
+    // const categoriesAndSubCategories = products.reduce((acc, product) => {
+    //   const categoryIndex = acc.findIndex(
+    //     (item) => item.category === product.category
+    //   );
+    //   const brandIndex = acc.findIndex((item) => item.brand === product.brand);
+    //
+    //   if (categoryIndex === -1) {
+    //     acc.push({
+    //       category: product.category,
+    //       subCategories: [product.subCategory],
+    //       brand: [product.brand],
+    //     });
+    //   } else {
+    //     const subCategoryIndex = acc[categoryIndex].subCategories.findIndex(
+    //       (item) => item === product.subCategory
+    //     );
+    //     const subBrandIndex = acc[brandIndex].brand.findIndex(
+    //       (item) => item === product.brand
+    //     );
+    //     if (subCategoryIndex === -1) {
+    //       acc[categoryIndex].subCategories.push(product.subCategory);
+    //     }
+    //     if (subBrandIndex === -1) {
+    //       acc[brandIndex].brand.push(product.brand);
+    //     }
+    //   }
+    //
+    //   return acc;
+    // }, []);
+
+    const productsInfo = products.reduce((acc, product) => {
+      const categoryIndex = acc.findIndex(
+        (item) => item.category === product.category
+      );
+      const brandItem = acc.find((item) => item.brand === product.brand);
+
+      if (categoryIndex === -1) {
+        acc.push({
+          category: product.category,
+          subCategories: [product.subCategory],
+          brand: [product.brand],
+        });
+      } else {
+        const subCategoryIndex = acc[categoryIndex].subCategories.findIndex(
+          (item) => item === product.subCategory
+        );
+        if (subCategoryIndex === -1) {
+          acc[categoryIndex].subCategories.push(product.subCategory);
+        }
+        if (!brandItem) {
+          acc[categoryIndex].brand.push(product.brand);
+        } else {
+          const brandIndex = acc[categoryIndex].brand.findIndex(
+            (item) => item === product.brand
+          );
+          if (brandIndex === -1) {
+            acc[categoryIndex].brand.push(product.brand);
+          }
+        }
       }
+
       return acc;
     }, []);
 
     db.products = products;
-    db.categories = categories;
+    db["products-info"] = productsInfo;
     db.checkout = checkout;
 
     await fs.writeFile(dbFilePath, JSON.stringify(db));

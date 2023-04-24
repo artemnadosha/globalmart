@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Pagination } from "../../../UI";
-import { ProductCard } from "../index";
-import { List } from "antd";
+import { ProductCard, ProductFilter } from "../index";
+import { Col, List, Row } from "antd";
 import { TypeProduct } from "../../../types/TypeProduct";
 import s from "./ProductList.module.scss";
 
@@ -35,35 +35,50 @@ const ProductList: FC<ProductListProps> = ({
   const onSearch = (value: string) => console.log(value);
   return (
     <div className={s.wrapper}>
-      <div className={s.searchWrapper}>
-        <Search
-          placeholder="input search text"
-          onSearch={onSearch}
-          enterButton
-        />
-      </div>
-      <List
-        loading={loading}
-        grid={{
-          xs: 1,
-          sm: 1,
-          md: 2,
-          lg: 3,
-          xl: 4,
-          xxl: 6,
-        }}
-        dataSource={products}
-        renderItem={(product) => (
-          <List.Item style={{ margin: 10 }}>
-            <ProductCard product={product} />
-          </List.Item>
-        )}
-      />
-      <Pagination
-        total={totalProduct}
-        current={Number(page)}
-        onClick={handlePagination}
-      />
+      <Row gutter={24} style={{ height: "100%" }}>
+        <Col span={4} style={{ height: "100%" }}>
+          <ProductFilter />
+        </Col>
+        <Col span={20}>
+          <div className={s.searchWrapper}>
+            <Search
+              placeholder="input search text"
+              onSearch={onSearch}
+              enterButton
+            />
+          </div>
+          <List
+            loading={loading}
+            grid={{
+              xs: 1,
+              sm: 1,
+              md: 2,
+              lg: 3,
+              xl: 3,
+              xxl: 4,
+            }}
+            pagination={{
+              current: Number(page),
+              onChange: handlePagination,
+              pageSize: 12,
+              total: totalProduct,
+              showQuickJumper: true,
+              showSizeChanger: false,
+            }}
+            dataSource={products}
+            renderItem={(product) => (
+              <List.Item style={{ margin: 10 }}>
+                <ProductCard product={product} />
+              </List.Item>
+            )}
+          />
+        </Col>
+      </Row>
+      {/*<Pagination*/}
+      {/*  total={totalProduct}*/}
+      {/*  current={Number(page)}*/}
+      {/*  onClick={handlePagination}*/}
+      {/*/>*/}
     </div>
   );
 };

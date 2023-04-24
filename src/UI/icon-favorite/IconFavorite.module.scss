@@ -1,26 +1,13 @@
-.heart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.favorite {
     color: gray;
     transition: .3s;
     cursor: pointer;
-    position: relative;
 
     &:hover {
-        p, svg {
-            color: #dc0000;
-        }
+        color: #dc0000;
     }
 
     &.active {
         color: #dc0000;
     }
-}
-
-.countPosition {
-    position: absolute;
-    right: 9px;
-    top: 14px;
-    color: white;
 }

@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { TypeProduct } from "../types/TypeProduct";
 import { addItemCart, removeAllItemCart, removeItemCart } from "../store/slice";
-import { changeQuantityItemProduct } from "../store/slice/cart-slice/cartSlice";
+import { changeQuantityItemProduct } from "../store/slice/cart-slice/cart.slice";
 import { useCallback } from "react";
 
 interface useCartReturnType {
