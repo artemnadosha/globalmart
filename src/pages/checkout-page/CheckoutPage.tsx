@@ -17,10 +17,11 @@ import { ROUTES } from "../../utils/const";
 const CheckoutPage: FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [initialForm, setInitialForm] = useState(true);
+  const [orderNumber, setOrderNumber] = useState(0);
   const { removeAllCart } = useCartReducer();
   const [createCheckout, { isLoading, isSuccess, isError }] =
     useCreateCheckoutMutation();
-  const { stateCheckout } = useCheckoutReducer();
+  const { stateCheckout, cleanCheckout } = useCheckoutReducer();
 
   const handleNextStep = () => {
     setCurrentStep(currentStep + 1);
@@ -32,12 +33,14 @@ const CheckoutPage: FC = () => {
 
   const handleCreateCheckout = useCallback(() => {
     setInitialForm(false);
+    setOrderNumber(stateCheckout?.orderInfo?.orderNumber);
     createCheckout(stateCheckout);
   }, [stateCheckout, createCheckout]);
 
   useEffect(() => {
     if (isSuccess) {
       removeAllCart();
+      cleanCheckout();
     }
   }, [isSuccess, removeAllCart]);
 
@@ -103,10 +106,7 @@ const CheckoutPage: FC = () => {
       {isLoading && <div>loading</div>}
       {!isLoading && (isSuccess || isError) && (
         <Col span={8} offset={8}>
-          <ResultCheckout
-            status={isSuccess}
-            orderNumber={stateCheckout?.orderInfo?.orderNumber}
-          />
+          <ResultCheckout status={isSuccess} orderNumber={orderNumber} />
         </Col>
       )}
     </>

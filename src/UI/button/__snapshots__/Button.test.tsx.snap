@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component button spapshot 1`] = `
+<div>
+  <button
+    class="ant-btn css-dev-only-do-not-override-htwhyh ant-btn-primary ant-btn-lg"
+    style="width: 100%;"
+    type="button"
+  />
+</div>
+`;

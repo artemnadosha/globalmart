@@ -15,6 +15,7 @@ const FavoritePage: FC = () => {
   };
   return (
     <ProductList
+      filter={false}
       products={favoriteSlice}
       totalProduct={favoriteItems.length}
       onClick={handleChangePage}

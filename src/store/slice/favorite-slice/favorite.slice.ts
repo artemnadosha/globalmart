@@ -12,7 +12,7 @@ const initialState: favoriteState = {
 };
 
 const favoriteSlice = createSlice({
-  name: "cart",
+  name: "favorite",
   initialState,
   reducers: {
     addItemFavorite: (state, action: PayloadAction<TypeProduct>) => {
@@ -23,6 +23,7 @@ const favoriteSlice = createSlice({
       state.favorite = state.favorite.filter(
         (item) => item.id !== action.payload
       );
+      state.quantityFavorite = state.favorite.length;
     },
   },
 });

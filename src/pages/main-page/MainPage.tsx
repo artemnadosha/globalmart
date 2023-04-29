@@ -1,7 +1,7 @@
 import Header from "../../component/header/Header";
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
-import { Col, Layout, Row } from "antd";
+import { Row } from "antd";
 import PurchaseConfirmationModal from "../../component/purchase-confirmation-modal/PurchaseConfirmationModal";
 import { useModalReducer } from "../../hooks";
 import { useGetProductsInfoQuery } from "../../store/api/products.api";
@@ -17,18 +17,11 @@ const MainPage: FC = () => {
 
   return (
     <Row gutter={24} style={{ marginLeft: 0, marginRight: 0 }}>
-      {/*<Col span={24} style={{ padding: 0 }}>*/}
       <Header />
-      {/*</Col>*/}
-      {/*<Col span={24} style={{ padding: 0 }}>*/}
       {dataCategory && <Navbar productCategories={dataCategory} />}
-      {/*</Col>*/}
-      {/*{data && <Sidebar productCategories={data.slice(0, 10)} />}*/}
-      {/*<Col span={20} offset={2} style={{ padding: 0 }}>*/}
       <Content>
         <Outlet />
       </Content>
-      {/*</Col>*/}
       {isActiveModal && <PurchaseConfirmationModal />}
     </Row>
   );
