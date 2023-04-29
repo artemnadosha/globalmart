@@ -38,6 +38,13 @@ const checkoutSlice = createSlice({
     setProduct: (state, action: PayloadAction<ProductInCheckout[]>) => {
       state.product = action.payload;
     },
+    cleansingCheckout: (state) => {
+      state.user = {} as UserInfoType | UserUnknownInCheckout;
+      state.shippingMethod = {} as ShippingMethodType;
+      state.payout = {} as UserPayoutCheckout;
+      state.orderInfo = {} as OrderInfoType;
+      state.product = [] as ProductInCheckout[];
+    },
   },
 });
 
@@ -47,5 +54,6 @@ export const {
   setPayout,
   setOrderInfo,
   setProduct,
+  cleansingCheckout,
 } = checkoutSlice.actions;
 export default checkoutSlice.reducer;

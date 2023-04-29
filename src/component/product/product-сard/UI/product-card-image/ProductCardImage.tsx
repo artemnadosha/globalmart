@@ -6,15 +6,17 @@ interface ProductCardImageProps {
   title: string;
   thumbnail: string;
   rating: number;
+  maxWidth?: string;
 }
 
 const ProductCardImage: FC<ProductCardImageProps> = ({
   title,
   thumbnail,
   rating,
+  maxWidth,
 }) => {
   return (
-    <div className={s.imageWrapper}>
+    <div className={s.imageWrapper} style={{ maxWidth }}>
       <Image alt={title} src={thumbnail} />
       <div className={s.star}>
         <IconStar rating={rating} />

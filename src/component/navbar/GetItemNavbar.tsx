@@ -39,8 +39,7 @@ export const GetItemNavbar = (sideBarItemsName: string[]): MenuItem[] => {
       label: "Products Categories",
       key: "products",
       icon: <AlignLeftOutlined />,
-      children: [getItem({ label: "All", key: "all" }), ...navbarItems],
+      children: [...navbarItems],
     }),
-    getItem({ label: "test", key: "test" }),
   ];
 };

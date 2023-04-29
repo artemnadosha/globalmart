@@ -15,6 +15,7 @@ import {
   setUserInfo,
 } from "../store/slice";
 import { useCallback } from "react";
+import { cleansingCheckout } from "../store/slice/checkout-slice/checkout.slice";
 
 interface UseCheckoutReturnType {
   stateCheckout: UserCheckoutFormValues;
@@ -23,6 +24,7 @@ interface UseCheckoutReturnType {
   setCheckoutPayout: (value: UserPayoutCheckout) => void;
   setCheckoutOrderInfo: (value: OrderInfoType) => void;
   setCheckoutProduct: (value: ProductInCheckout[]) => void;
+  cleanCheckout: () => void;
 }
 
 const useCheckoutReducer = (): UseCheckoutReturnType => {
@@ -60,6 +62,11 @@ const useCheckoutReducer = (): UseCheckoutReturnType => {
     [dispatch]
   );
 
+  const cleanCheckout = useCallback(
+    () => dispatch(cleansingCheckout()),
+    [dispatch]
+  );
+
   return {
     stateCheckout,
     setCheckoutUserInfo,
@@ -67,6 +74,7 @@ const useCheckoutReducer = (): UseCheckoutReturnType => {
     setCheckoutPayout,
     setCheckoutOrderInfo,
     setCheckoutProduct,
+    cleanCheckout,
   };
 };
 

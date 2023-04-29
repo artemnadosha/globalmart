@@ -1,7 +1,6 @@
 import { FC, useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { TypeProduct } from "../../../types/TypeProduct";
-import { Card } from "antd";
 import {
   ShoppingCartOutlined,
   ArrowRightOutlined,
@@ -21,9 +20,10 @@ import s from "./ProductCard.module.scss";
 
 export interface ProductCardProps {
   product: TypeProduct;
+  flexDirection: "column" | "row";
 }
 
-const ProductCard: FC<ProductCardProps> = ({ product }) => {
+const ProductCard: FC<ProductCardProps> = ({ product, flexDirection }) => {
   const { id, price, discountPercentage, rating, brand, title, thumbnail } =
     product;
 
@@ -64,26 +64,13 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
   const handleOpenProduct = () => navigate(`${location.pathname}/${id}`);
 
   return (
-    <Card
-      className={s.cardWrapper}
-      // style={{ width: 230 }}
-      cover={
-        <ProductCardImage title={title} thumbnail={thumbnail} rating={rating} />
-      }
-      actions={[
-        <LikeOutlined
-          onClick={
-            isInFavorite ? handleRemoveFavoriteItem : handleSubmitFavorite
-          }
-          style={isInFavorite ? { color: "red" } : {}}
-        />,
-        <ShoppingCartOutlined
-          onClick={isInCart ? handleRemoveCartItem : handlerOpenModal}
-          style={isInCart ? { color: "#1677ff" } : {}}
-        />,
-        <ArrowRightOutlined onClick={handleOpenProduct} />,
-      ]}
-    >
+    <div className={s.card} style={{ flexDirection }}>
+      <ProductCardImage
+        title={title}
+        thumbnail={thumbnail}
+        rating={rating}
+        maxWidth={flexDirection === "row" ? "300px" : undefined}
+      />
       <ProductMeta
         title={title}
         brand={brand}
@@ -93,7 +80,27 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
           discountPercentage
         )}
       />
-    </Card>
+      <div
+        className={s.action}
+        style={
+          flexDirection === "column"
+            ? { flexDirection: "row" }
+            : { flexDirection: "column" }
+        }
+      >
+        <LikeOutlined
+          onClick={
+            isInFavorite ? handleRemoveFavoriteItem : handleSubmitFavorite
+          }
+          style={isInFavorite ? { color: "red" } : {}}
+        />
+        <ShoppingCartOutlined
+          onClick={isInCart ? handleRemoveCartItem : handlerOpenModal}
+          style={isInCart ? { color: "#1677ff" } : {}}
+        />
+        <ArrowRightOutlined onClick={handleOpenProduct} />
+      </div>
+    </div>
   );
 };
 
