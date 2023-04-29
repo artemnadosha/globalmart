@@ -17,66 +17,6 @@ async function main() {
     const dbData = await fs.readFile(dbFilePath, "utf8");
     const db = JSON.parse(dbData);
 
-    // const productsInfo = products.reduce((acc, product) => {
-    //   const categoryIndex = acc.findIndex(
-    //     (item) => item.category === product.category
-    //   );
-    //
-    //   if (categoryIndex === -1) {
-    //     acc.push({
-    //       category: product.category,
-    //       total: 1,
-    //       subCategories: [
-    //         {
-    //           name: product.subCategory,
-    //           total: 1,
-    //           brands: [
-    //             {
-    //               name: product.brand,
-    //               total: 1,
-    //             },
-    //           ],
-    //         },
-    //       ],
-    //       brandAll: [
-    //           product.brand
-    //       ],
-    //     });
-    //   } else {
-    //     const subCategoryIndex = acc[categoryIndex].subCategories.findIndex(
-    //       (item) => item.name === product.subCategory
-    //     );
-    //
-    //     if (subCategoryIndex === -1) {
-    //       acc[categoryIndex].subCategories.push({
-    //         name: product.subCategory,
-    //         total: 1,
-    //         brands: [{ name: product.brand, total: 1 }],
-    //       });
-    //     } else {
-    //       if (
-    //         !acc[categoryIndex].subCategories[subCategoryIndex].brands.includes(
-    //           product.brand
-    //         )
-    //       ) {
-    //         acc[categoryIndex].subCategories[subCategoryIndex].brands.push(
-    //           product.brand
-    //         );
-    //       }
-    //
-    //       acc[categoryIndex].subCategories[subCategoryIndex].total++;
-    //     }
-    //
-    //     if (!acc[categoryIndex].brandAll.includes(product.brand)) {
-    //       acc[categoryIndex].brandAll.push(product.brand);
-    //     }
-    //
-    //     acc[categoryIndex].total++;
-    //   }
-    //
-    //   return acc;
-    // }, []);
-
     const productsInfo = products.reduce((acc, product) => {
       const categoryIndex = acc.findIndex(
         (item) => item.category === product.category

@@ -71,7 +71,9 @@ const ProductList: FC<ProductListProps> = ({
               }}
             >
               {brandState.map((item) => (
-                <Tag style={{ userSelect: "none" }}>{correctionName(item)}</Tag>
+                <Tag key={item} style={{ userSelect: "none" }}>
+                  {correctionName(item)}
+                </Tag>
               ))}
             </div>
             <Segmented

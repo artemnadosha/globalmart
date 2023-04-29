@@ -9,9 +9,14 @@ interface GetProductsProps {
   brand: string;
 }
 
+interface GetResponseProducts {
+  totalProducts: number;
+  products: TypeProduct[];
+}
+
 export const productsApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getProducts: builder.query<TypeProduct[], GetProductsProps>({
+    getProducts: builder.query<GetResponseProducts, GetProductsProps>({
       query: ({ category, page, subCategory, brand }) => {
         const categories = !!category ? `&category=${category}` : "";
         const pages = !!page ? `&_page=${page}` : "";
@@ -27,6 +32,16 @@ export const productsApi = api.injectEndpoints({
 
         return {
           url: `/products?_limit=12${categories}${pages}${subCategories}${brands}`,
+          responseHandler: async (response) => {
+            const totalProducts = parseInt(
+              response.headers.get("X-Total-Count") || "0",
+              10
+            );
+
+            const products = await response.json();
+
+            return { totalProducts, products };
+          },
         };
       },
     }),
