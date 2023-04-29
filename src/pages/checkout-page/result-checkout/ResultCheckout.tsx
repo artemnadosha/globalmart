@@ -32,7 +32,9 @@ const ResultCheckout: FC<ResultCheckoutProps> = ({ status, orderNumber }) => {
           </Button>
           <Button
             type="primary"
-            onClick={() => navigate(`/${ROUTES.PRODUCTS}/all`)}
+            onClick={() =>
+              navigate(`/${ROUTES.PRODUCTS}/gadget-and-electronics?page=1`)
+            }
           >
             Buy Again
           </Button>

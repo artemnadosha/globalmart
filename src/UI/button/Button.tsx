@@ -7,7 +7,6 @@ interface ButtonProps extends PropsWithChildren {
   ghost?: boolean;
   danger?: boolean;
   htmlType?: "button" | "submit" | "reset";
-  isLoading?: boolean;
   textAlign?: "left" | "right" | "center";
 }
 
@@ -18,7 +17,6 @@ const Button: FC<ButtonProps> = ({
   danger,
   ghost,
   htmlType,
-  isLoading,
   textAlign,
 }) => {
   return (
@@ -30,7 +28,6 @@ const Button: FC<ButtonProps> = ({
       size={"large"}
       ghost={ghost}
       htmlType={htmlType}
-      loading={isLoading}
     >
       {children}
     </ButtonAnt>

@@ -7,7 +7,11 @@ interface CloseButtonProps {
 
 const CloseButtonIcon: FC<CloseButtonProps> = ({ onClick }) => {
   return (
-    <div onClick={onClick} className={s.closeContainer}>
+    <div
+      onClick={onClick}
+      className={s.closeContainer}
+      data-testid="close-button"
+    >
       <div className={s.leftRight}></div>
       <div className={s.rightLeft}></div>
       <label className={s.close}>close</label>

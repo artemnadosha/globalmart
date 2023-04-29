@@ -1,10 +1,9 @@
 import { FC } from "react";
-import Meta from "antd/es/card/Meta";
 import { correctionName } from "../../../../../utils";
 import s from "./ProductMeta.module.scss";
 import cn from "classnames";
 
-interface ProductMetaProps {
+export interface ProductMetaProps {
   title: string;
   brand: string;
   price: number;
@@ -18,21 +17,18 @@ const ProductMeta: FC<ProductMetaProps> = ({
   brand,
 }) => {
   return (
-    <Meta
-      style={{ margin: -15 }}
-      title={correctionName(title)}
-      description={
-        <div className={s.description}>
-          <p className={cn("verySmall", s.brand)}>{brand}</p>
-          <div className={s.priceWrapper}>
-            <p className={cn(s.discount, "verySmall")}>
-              ${priceWithoutDiscount}
-            </p>
-            <p>${price}</p>
-          </div>
-        </div>
-      }
-    />
+    <div className={s.description}>
+      <div className={s.priceWrapper}>
+        <h4>${price}</h4>
+        <p className={cn(s.discount, "verySmall")}>${priceWithoutDiscount}</p>
+      </div>
+      <div>
+        <p className={s.text}>{correctionName(title)}</p>
+        <p className={cn("verySmall", s.text, s.brand)}>
+          {correctionName(brand)}
+        </p>
+      </div>
+    </div>
   );
 };
 

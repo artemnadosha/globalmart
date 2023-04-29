@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`modal spapshot 1`] = `
+<div>
+  <div
+    class="wrapper"
+  >
+    <div
+      class="overlay"
+    />
+    <div
+      class="modal"
+    >
+      <div
+        class="wrapper"
+      >
+        <h2>
+          test
+        </h2>
+      </div>
+      <div
+        class="wrapper"
+      >
+        <p>
+          test
+        </p>
+      </div>
+      <div
+        class="wrapper"
+      >
+        <button
+          class="ant-btn css-dev-only-do-not-override-htwhyh ant-btn-primary ant-btn-lg"
+          style="width: 100%;"
+          type="button"
+        >
+          <span>
+            Ok
+          </span>
+        </button>
+        <button
+          class="ant-btn css-dev-only-do-not-override-htwhyh ant-btn-primary ant-btn-lg ant-btn-dangerous"
+          style="width: 100%;"
+          type="button"
+        >
+          <span>
+            Cancel
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

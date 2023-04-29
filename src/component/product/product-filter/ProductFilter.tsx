@@ -1,17 +1,58 @@
-import { Collapse, Menu, Radio, Tabs } from "antd";
+import { Checkbox, Collapse, Radio, RadioChangeEvent, Space } from "antd";
 import { FC } from "react";
 import s from "./ProductFilter.module.scss";
 import FilterRadioButton from "./product-filter-radio-button/FilterRadioButton";
 import { useParams } from "react-router-dom";
 import { useGetProductsInfoQuery } from "../../../store/api/products.api";
+import { correctionName } from "../../../utils";
+import { CheckboxValueType } from "antd/es/checkbox/Group";
+import { GetRequestProductInfo } from "../../../types/GetRequestCategories";
 
 const { Panel } = Collapse;
 
-const ProductFilter: FC = () => {
-  const { categories } = useParams();
-  const { data } = useGetProductsInfoQuery();
+interface ProductFilterProps {
+  data: GetRequestProductInfo[];
+  handleChangeSubCategory: (category: string) => void;
+  handleChangeBrand: (brands: string[]) => void;
+  subCategoryState: string;
+  brandState: string[];
+  categories: string;
+}
 
-  const isCategory = data && data.find((item) => item.category === categories);
+const ProductFilter: FC<ProductFilterProps> = ({
+  categories,
+  data,
+  subCategoryState,
+  brandState,
+  handleChangeSubCategory,
+  handleChangeBrand,
+}) => {
+  // const { categories } = useParams();
+  // const { data } = useGetProductsInfoQuery();
+  // const {
+  //   handleChangeBrand,
+  //   handleChangeSubCategory,
+  //   subCategoryState,
+  //   brandState,
+  // } = useCreateUrl();
+
+  const isCategoryWithCategory = data?.find(
+    (item) => item.category === categories
+  )!;
+
+  const isCategoryFilter =
+    isCategoryWithCategory &&
+    isCategoryWithCategory.subCategories.find(
+      (item) => subCategoryState !== "all" && item.name === subCategoryState
+    );
+
+  const handleChangeCategoryKey = (key: RadioChangeEvent) => {
+    handleChangeSubCategory(key.target.value);
+  };
+
+  const handleChangeBrandKey = (key: CheckboxValueType[]) => {
+    handleChangeBrand(key as string[]);
+  };
 
   return (
     <Collapse
@@ -32,20 +73,22 @@ const ProductFilter: FC = () => {
         <Radio.Group
           buttonStyle="solid"
           style={{ display: "flex", flexDirection: "column" }}
-          defaultValue=""
+          value={subCategoryState}
           className={s.radioGroup}
+          onChange={handleChangeCategoryKey}
         >
           <FilterRadioButton
-            value=""
+            value="all"
             title="All"
             className={s.buttonCategory}
           />
-          {isCategory?.subCategories &&
-            isCategory.subCategories.map((item) => (
+          {isCategoryWithCategory?.subCategories &&
+            isCategoryWithCategory.subCategories.map((item) => (
               <FilterRadioButton
-                value={item}
+                key={item.name}
+                value={item.name}
                 className={s.buttonCategory}
-                title={item}
+                title={item.name}
               />
             ))}
         </Radio.Group>
@@ -58,26 +101,30 @@ const ProductFilter: FC = () => {
           borderBottom: "1px solid #DEE2E7",
         }}
       >
-        <Radio.Group
-          buttonStyle="solid"
-          style={{ display: "flex", flexDirection: "column" }}
-          defaultValue=""
-          className={s.radioGroup}
-        >
-          <FilterRadioButton
-            value=""
-            title="All"
-            className={s.buttonCategory}
-          />
-          {isCategory?.brand &&
-            isCategory.brand.map((item) => (
-              <FilterRadioButton
-                value={item}
-                className={s.buttonCategory}
-                title={item}
-              />
-            ))}
-        </Radio.Group>
+        <Checkbox.Group onChange={handleChangeBrandKey} value={brandState}>
+          <Space.Compact direction="vertical">
+            <Checkbox value="all">All</Checkbox>
+            {!!isCategoryFilter
+              ? isCategoryFilter.brands.map((item: any, index: any) => (
+                  <Checkbox
+                    key={index}
+                    value={item.name}
+                    style={{ marginInlineStart: 0 }}
+                  >
+                    {correctionName(item.name)}
+                  </Checkbox>
+                ))
+              : isCategoryWithCategory?.brandsAll.map((item, index) => (
+                  <Checkbox
+                    key={index}
+                    value={item}
+                    style={{ marginInlineStart: 0 }}
+                  >
+                    {correctionName(item)}
+                  </Checkbox>
+                ))}
+          </Space.Compact>
+        </Checkbox.Group>
       </Panel>
     </Collapse>
   );

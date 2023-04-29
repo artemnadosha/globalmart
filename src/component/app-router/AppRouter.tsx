@@ -10,11 +10,8 @@ import {
   ProductInfoPage,
   ProductsPage,
 } from "../../pages";
-import { useCartReducer } from "../../hooks";
 
 const AppRouter: FC = () => {
-  const { cartItems } = useCartReducer();
-
   return (
     <Routes>
       <Route path={ROUTES.HOME} element={<MainPage />}>
@@ -24,14 +21,19 @@ const AppRouter: FC = () => {
 
         <Route path={ROUTES.PRODUCTS} element={<ProductsPage />}>
           <Route path={ROUTES.PRODUCT_CATEGORIES} element={<ProductsPage />} />
+          <Route
+            path={`${ROUTES.PRODUCT_CATEGORIES}/*`}
+            element={<Navigate to={`/gadget-and-electronics?page=1`} />}
+          />
         </Route>
         <Route path="test" element={<div>test</div>} />
         <Route path={ROUTES.PRODUCT} element={<ProductInfoPage />} />
+        <Route
+          path={ROUTES.PRODUCTS}
+          element={<Navigate to={`gadget-and-electronics?page=1`} />}
+        />
       </Route>
-      <Route
-        path="/*"
-        element={<Navigate to={`${ROUTES.PRODUCTS}/all?page=1`} />}
-      />
+
       <Route path={ROUTES.CHECKOUT} element={<CheckoutPage />} />
     </Routes>
   );
