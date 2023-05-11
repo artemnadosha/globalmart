@@ -1,15 +1,12 @@
-import { FC, useCallback, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { FC, memo, useCallback, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { TypeProduct } from "../../../types/TypeProduct";
 import {
   ShoppingCartOutlined,
   ArrowRightOutlined,
   LikeOutlined,
 } from "@ant-design/icons";
-import {
-  handleFindProduct,
-  calculatePriceWithoutDiscount,
-} from "../../../utils";
+import { calculatePriceWithoutDiscount } from "../../../utils";
 import {
   useCartReducer,
   useFavoriteReducer,
@@ -23,26 +20,18 @@ export interface ProductCardProps {
   flexDirection: "column" | "row";
 }
 
-const ProductCard: FC<ProductCardProps> = ({ product, flexDirection }) => {
+const ProductCard: FC<ProductCardProps> = memo(({ product, flexDirection }) => {
   const { id, price, discountPercentage, rating, brand, title, thumbnail } =
     product;
 
-  const [isInCart, setIsInCart] = useState<boolean>(false);
-  const [isInFavorite, setIsInFavorite] = useState<boolean>(false);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { favoriteItems, addProductFavorite, removeProductFavorite } =
-    useFavoriteReducer();
-  const { cartItems, addProductCart, removeProductCart } = useCartReducer();
+  const { addProductFavorite, removeProductFavorite, findProductFavorite } =
+    useFavoriteReducer(id);
+  const { addProductCart, removeProductCart, findProductCart } =
+    useCartReducer(id);
   const { response, productId, toggleIsActiveModal, resetModalValue } =
     useModalReducer();
 
-  useEffect(() => {
-    setIsInCart(handleFindProduct({ product: cartItems, id }));
-    setIsInFavorite(handleFindProduct({ product: favoriteItems, id }));
-  }, [cartItems, favoriteItems, id]);
-
-  const handlerOpenModal = () => toggleIsActiveModal(id);
+  const location = useLocation();
 
   const handleSubmitCart = useCallback(() => {
     if (id === productId) {
@@ -54,14 +43,6 @@ const ProductCard: FC<ProductCardProps> = ({ product, flexDirection }) => {
   useEffect(() => {
     response && handleSubmitCart();
   }, [response, handleSubmitCart]);
-
-  const handleSubmitFavorite = () => addProductFavorite(product);
-
-  const handleRemoveCartItem = () => removeProductCart(id);
-
-  const handleRemoveFavoriteItem = () => removeProductFavorite(id);
-
-  const handleOpenProduct = () => navigate(`${location.pathname}/${id}`);
 
   return (
     <div className={s.card} style={{ flexDirection }}>
@@ -90,18 +71,26 @@ const ProductCard: FC<ProductCardProps> = ({ product, flexDirection }) => {
       >
         <LikeOutlined
           onClick={
-            isInFavorite ? handleRemoveFavoriteItem : handleSubmitFavorite
+            findProductFavorite
+              ? () => removeProductFavorite(id)
+              : () => addProductFavorite(product)
           }
-          style={isInFavorite ? { color: "red" } : {}}
+          style={findProductFavorite ? { color: "red" } : {}}
         />
         <ShoppingCartOutlined
-          onClick={isInCart ? handleRemoveCartItem : handlerOpenModal}
-          style={isInCart ? { color: "#1677ff" } : {}}
+          onClick={
+            findProductCart
+              ? () => removeProductCart(id)
+              : () => toggleIsActiveModal(id)
+          }
+          style={findProductCart ? { color: "#1677ff" } : {}}
         />
-        <ArrowRightOutlined onClick={handleOpenProduct} />
+        <Link to={`${location.pathname}/${id}`}>
+          <ArrowRightOutlined />
+        </Link>
       </div>
     </div>
   );
-};
+});
 
 export default ProductCard;

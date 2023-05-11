@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from "react";
+import { ChangeEvent, FC, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductCard, ProductFilter } from "../index";
 import { Col, List, Row, Segmented, Tag } from "antd";
@@ -9,6 +9,9 @@ import { useGetProductsInfoQuery } from "../../../store/api/products.api";
 import { useFilterProducts } from "../../../hooks";
 import { SegmentedValue } from "antd/es/segmented";
 import { correctionName } from "../../../utils";
+import { Input } from "antd";
+
+const { Search } = Input;
 
 interface ProductListProps {
   products: TypeProduct[];
@@ -32,12 +35,14 @@ const ProductList: FC<ProductListProps> = ({
     handleChangeBrand,
     handleChangeSubCategory,
     handleChangePage,
+    handleChangeSearchTitle,
     subCategoryState,
     brandState,
     pageState,
+    titleSearchState,
   } = useFilterProducts();
   const [styleCard, setStyleCard] = useState<"column" | "row">("column");
-
+  const [valueSearch, setValueSearch] = useState<string>(titleSearchState);
   const handlePagination = (page: number) => {
     handleChangePage(page);
     onClick && onClick(page);
@@ -46,6 +51,17 @@ const ProductList: FC<ProductListProps> = ({
   const handleChangeStyle = (value: SegmentedValue) => {
     setStyleCard(value as "column" | "row");
   };
+
+  const onSearch = (title: string) => {
+    handleChangeSearchTitle(title);
+  };
+  const handleChangeSearchValue = (value: ChangeEvent<HTMLInputElement>) => {
+    setValueSearch(value.target.value);
+  };
+
+  useEffect(() => {
+    setValueSearch(titleSearchState);
+  }, [titleSearchState]);
 
   return (
     <div className={s.wrapper}>
@@ -64,18 +80,14 @@ const ProductList: FC<ProductListProps> = ({
         )}
         <Col span={20}>
           <div className={s.bar}>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-              }}
-            >
-              {brandState.map((item) => (
-                <Tag key={item} style={{ userSelect: "none" }}>
-                  {correctionName(item)}
-                </Tag>
-              ))}
-            </div>
+            <Search
+              style={{ width: 200 }}
+              placeholder="input search text"
+              onSearch={onSearch}
+              value={valueSearch}
+              onChange={handleChangeSearchValue}
+              enterButton
+            />
             <Segmented
               size="large"
               onChange={handleChangeStyle}
@@ -91,6 +103,20 @@ const ProductList: FC<ProductListProps> = ({
                 },
               ]}
             />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              gap: 10,
+              flexWrap: "wrap",
+              margin: "20px 0",
+            }}
+          >
+            {brandState.map((item) => (
+              <Tag key={item} style={{ userSelect: "none" }} color="#0076f1">
+                {correctionName(item)}
+              </Tag>
+            ))}
           </div>
           <List
             loading={loading}
@@ -117,7 +143,13 @@ const ProductList: FC<ProductListProps> = ({
             }}
             dataSource={products}
             renderItem={(product) => (
-              <List.Item style={{ borderBlockEnd: "none", width: "100%" }}>
+              <List.Item
+                style={{
+                  borderBlockEnd: "none",
+                  width: "100%",
+                  padding: 0,
+                }}
+              >
                 <ProductCard product={product} flexDirection={styleCard} />
               </List.Item>
             )}

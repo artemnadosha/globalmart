@@ -29,8 +29,8 @@ export function getItem({
   } as MenuItem;
 }
 
-export const GetItemNavbar = (sideBarItemsName: string[]): MenuItem[] => {
-  const navbarItems = sideBarItemsName.map((navbarItem) =>
+export const GetItemNavbar = (navbarItems?: string[]): MenuItem[] => {
+  const navbarItemsRender = navbarItems?.map((navbarItem) =>
     getItem({ label: correctionTag(navbarItem), key: navbarItem })
   );
 
@@ -39,7 +39,7 @@ export const GetItemNavbar = (sideBarItemsName: string[]): MenuItem[] => {
       label: "Products Categories",
       key: "products",
       icon: <AlignLeftOutlined />,
-      children: [...navbarItems],
+      children: navbarItemsRender && [...navbarItemsRender],
     }),
   ];
 };

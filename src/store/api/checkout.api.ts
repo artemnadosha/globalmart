@@ -1,5 +1,4 @@
 import { api } from "./api";
-import {} from "../../types/UserTypes";
 import {
   UserCheckoutFormValues,
   UserCheckoutRequestTypes,

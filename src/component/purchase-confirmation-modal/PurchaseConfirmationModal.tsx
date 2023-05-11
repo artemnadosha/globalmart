@@ -1,11 +1,6 @@
 import { FC } from "react";
 import { Modal } from "../../UI";
 
-// interface PurchaseConfirmationModalProps {
-//   onClose: () => void;
-//   onSubmit?: () => void;
-// }
-
 const PurchaseConfirmationModal: FC = () => {
   return (
     <Modal

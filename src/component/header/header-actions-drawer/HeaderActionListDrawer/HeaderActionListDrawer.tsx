@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { TypeProduct } from "../../../../types/TypeProduct";
-import { Avatar, List, Space } from "antd";
+import { List, Space } from "antd";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../../utils/const";
 import { correctionName } from "../../../../utils";
@@ -21,11 +21,11 @@ const HeaderActionListDrawer: FC<HeaderActionListDrawerProps> = ({
 }) => {
   const { removeProductCart } = useCartReducer();
   const { removeProductFavorite } = useFavoriteReducer();
-  const handlerRemove = (id: number) => {
+  const handlerRemove = (itemId: number) => {
     if (listId === "cart") {
-      removeProductCart(id);
+      removeProductCart(itemId);
     } else {
-      removeProductFavorite(id);
+      removeProductFavorite(itemId);
     }
   };
   return (

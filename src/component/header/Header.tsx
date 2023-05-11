@@ -1,6 +1,5 @@
-import { FC, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button, Content, IconCart, IconFavorite, IconUser } from "../../UI";
+import { FC } from "react";
+import { Button, IconCart, IconFavorite, IconUser } from "../../UI";
 import { useCartReducer, useFavoriteReducer } from "../../hooks";
 
 import { ROUTES } from "../../utils/const";
@@ -11,20 +10,15 @@ import HeaderActionsDrawer from "./header-actions-drawer/HeaderActionsDrawer";
 const { Header: HeaderAnt } = Layout;
 
 const Header: FC = () => {
-  const navigate = useNavigate();
   const { favoriteItems } = useFavoriteReducer();
   const { cartItems } = useCartReducer();
-
-  const handleBack = () => {
-    navigate(ROUTES.HOME);
-  };
 
   return (
     <HeaderAnt className={s.wrapperHeader}>
       <Col span={20} offset={2} style={{ padding: 0 }}>
         <div className={s.header}>
           <div>
-            <Button type="primary" onClick={handleBack}>
+            <Button type="primary" href={ROUTES.HOME}>
               HOME
             </Button>
           </div>

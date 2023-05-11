@@ -2,28 +2,33 @@ import { useAppDispatch, useAppSelector } from "../store/store";
 import { TypeProduct } from "../types/TypeProduct";
 import { addItemCart, removeAllItemCart, removeItemCart } from "../store/slice";
 import { changeQuantityItemProduct } from "../store/slice/cart-slice/cart.slice";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 
 interface useCartReturnType {
   cartItems: TypeProduct[];
   quantityCart: number;
   addProductCart: (product: TypeProduct) => void;
-  removeProductCart: (id: number) => void;
+  removeProductCart: (itemId: number) => void;
   removeAllCart: () => void;
   changeQuantityItemProducts: (id: number, quantity: number) => void;
+  findProductCart: boolean;
 }
 
-const useCartReducer = (): useCartReturnType => {
+const useCartReducer = (id?: number): useCartReturnType => {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector((state) => state.cart.cart);
   const quantityCart = useAppSelector((state) => state.cart.quantityCart);
 
-  const addProductCart = (product: TypeProduct) =>
-    dispatch(addItemCart(product));
+  const addProductCart = useCallback(
+    (product: TypeProduct) => {
+      dispatch(addItemCart(product));
+    },
+    [dispatch]
+  );
 
   const removeProductCart = useCallback(
-    (id: number) => {
-      dispatch(removeItemCart(id));
+    (itemId: number) => {
+      dispatch(removeItemCart(itemId));
     },
     [dispatch]
   );
@@ -34,6 +39,7 @@ const useCartReducer = (): useCartReturnType => {
 
   const changeQuantityItemProducts = useCallback(
     (id: number, quantity: number) =>
+      id &&
       dispatch(
         changeQuantityItemProduct({
           id,
@@ -43,6 +49,12 @@ const useCartReducer = (): useCartReturnType => {
     [dispatch]
   );
 
+  const findProductCart = useMemo(
+    () => !!cartItems.find((item) => item.id === id),
+
+    [cartItems, id]
+  );
+
   return {
     cartItems,
     quantityCart,
@@ -50,6 +62,7 @@ const useCartReducer = (): useCartReturnType => {
     removeAllCart,
     removeProductCart,
     changeQuantityItemProducts,
+    findProductCart,
   };
 };
 

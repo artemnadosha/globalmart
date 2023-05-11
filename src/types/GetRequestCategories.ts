@@ -3,11 +3,6 @@ type subCategoriesBrandsRequest = {
   total: number;
 };
 
-type brandsAllRequest = {
-  name: string;
-  total: number;
-};
-
 export type subCategoriesRequest = {
   name: string;
   total: number;

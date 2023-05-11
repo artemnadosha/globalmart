@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { CartCheckout, CartItem } from "../index";
 import { useCartReducer } from "../../../hooks";
 import { Col, List, Row } from "antd";
@@ -6,31 +6,22 @@ import {
   sumCalculateDiscountAmount,
   sumCalculatePriceWithoutDiscount,
 } from "../../../utils";
-import { Content } from "../../../UI";
 
 const CartList: FC = () => {
   const { cartItems, removeProductCart, changeQuantityItemProducts } =
     useCartReducer();
 
-  const [priceWithoutDiscountAll, setPriceWithoutDiscountAll] =
-    useState<number>(0);
-  const [valueDiscountPercentageAll, setValueDiscountPercentageAll] =
-    useState<number>(0);
   const [pagination, setPagination] = useState(1);
 
   const handleSetCartItemQuantity = (id: number, quantity: number) => {
     changeQuantityItemProducts(id, quantity);
   };
 
-  useEffect(() => {
-    setValueDiscountPercentageAll(sumCalculateDiscountAmount(cartItems));
-    setPriceWithoutDiscountAll(sumCalculatePriceWithoutDiscount(cartItems));
-  }, [cartItems]);
-
   const handlePaginationChange = (page: number) => {
     setPagination(page);
   };
 
+  console.log("render cart list");
   return (
     <Row gutter={24}>
       <Col span={16}>
@@ -54,8 +45,8 @@ const CartList: FC = () => {
       </Col>
       <Col span={6} offset={2}>
         <CartCheckout
-          price={priceWithoutDiscountAll}
-          discount={valueDiscountPercentageAll}
+          price={sumCalculatePriceWithoutDiscount(cartItems)}
+          discount={sumCalculateDiscountAmount(cartItems)}
         />
       </Col>
     </Row>

@@ -7,6 +7,7 @@ interface GetProductsProps {
   page: number;
   subCategory: string;
   brand: string;
+  titleSearch: string;
 }
 
 interface GetResponseProducts {
@@ -14,24 +15,44 @@ interface GetResponseProducts {
   products: TypeProduct[];
 }
 
+interface paramsQuery {
+  _limit: number;
+  _page: number;
+  category?: string;
+  subCategory?: string;
+  q?: string;
+}
+
 export const productsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query<GetResponseProducts, GetProductsProps>({
-      query: ({ category, page, subCategory, brand }) => {
-        const categories = !!category ? `&category=${category}` : "";
-        const pages = !!page ? `&_page=${page}` : "";
-        const subCategories = !!subCategory
-          ? `&subCategory=${subCategory}`
-          : "";
-        const arrBrand = brand
-          .split(",")
-          .map((item) => `&brand=${item}`)
-          .join("");
+      query: ({ category, page, subCategory, brand, titleSearch }) => {
+        const params: paramsQuery = {
+          _limit: 12,
+          _page: page || 1,
+        };
+        if (category) {
+          params.category = category;
+        }
+        if (subCategory) {
+          params.subCategory = subCategory;
+        }
+        if (titleSearch) {
+          params.q = titleSearch;
+        }
 
-        const brands = !!brand ? arrBrand : "";
+        const brands = brand
+          ? brand
+              .split(",")
+              .map((item, index) =>
+                index === 0 ? `?brand=${item}` : `&brand=${item}`
+              )
+              .join("")
+          : "";
 
         return {
-          url: `/products?_limit=12${categories}${pages}${subCategories}${brands}`,
+          url: `/products${brands}`,
+          params,
           responseHandler: async (response) => {
             const totalProducts = parseInt(
               response.headers.get("X-Total-Count") || "0",

@@ -5,10 +5,12 @@ interface useCreateUrlReturnProps {
   pageState: number;
   subCategoryState: string;
   brandState: string[];
+  titleSearchState: string;
   handleChangeSubCategory: (subCategory: string) => void;
   handleChangeBrand: (brand: string[]) => void;
   handleChangeCategory: () => void;
   handleChangePage: (key: number) => void;
+  handleChangeSearchTitle: (title: string) => void;
 }
 
 export const useFilterProducts = (): useCreateUrlReturnProps => {
@@ -19,6 +21,7 @@ export const useFilterProducts = (): useCreateUrlReturnProps => {
   const page = Number(searchParams.get("page"));
   const subCategory = searchParams.get("category");
   const brand = searchParams.get("brand");
+  const titleSearch = searchParams.get("search");
 
   const [pageState, setPageState] = useState(page);
   const [subCategoryState, setSubCategoryState] = useState(
@@ -28,14 +31,17 @@ export const useFilterProducts = (): useCreateUrlReturnProps => {
   const [brandState, setBrandState] = useState<string[]>(
     brand?.split(",") || ["all"]
   );
+  const [titleSearchState, setTitleSearchState] = useState(titleSearch || "");
 
   const pageQuery = "?page=";
   const subCategoryQuery = "&category=";
   const brandQuery = "&brand=";
+  const titleSearchQuery = "&search=";
   const handleChangeSubCategory = (subCategory: string) => {
     setSubCategoryState(subCategory);
     setBrandState(["all"]);
     setPageState(1);
+    setTitleSearchState("");
   };
   const handleChangeBrand = (brand: string[]) => {
     const filterWithoutBrandAll = brand.filter((item) => item !== "all");
@@ -45,16 +51,22 @@ export const useFilterProducts = (): useCreateUrlReturnProps => {
       setBrandState(["all"]);
     }
     setPageState(1);
+    setTitleSearchState("");
   };
 
   const handleChangePage = (key: number) => {
     setPageState(key);
   };
 
+  const handleChangeSearchTitle = (title: string) => {
+    setTitleSearchState(title);
+  };
+
   const handleChangeCategory = () => {
     setBrandState(["all"]);
     setSubCategoryState("all");
-    setPageState(page);
+    setPageState(1);
+    setTitleSearchState("");
   };
 
   useEffect(() => {
@@ -63,8 +75,9 @@ export const useFilterProducts = (): useCreateUrlReturnProps => {
       setBrandState(brand?.split(",") || ["all"]);
       setSubCategoryState(subCategory || "all");
       setPageState(page || 1);
+      setTitleSearchState(titleSearch || "");
     }
-  }, [params.categories]);
+  }, [params.categories, brand, page, subCategory, titleSearch]);
 
   useEffect(() => {
     const pageStateNavigate = pageQuery + pageState;
@@ -74,22 +87,28 @@ export const useFilterProducts = (): useCreateUrlReturnProps => {
       ? ""
       : brandQuery + brandState.join(",");
 
+    const titleSearchNavigate = !!titleSearchState
+      ? titleSearchQuery + titleSearchState
+      : "";
     navigate(
       categoryState +
         pageStateNavigate +
         subCategoryStateNavigate +
-        brandStateNavigate
+        brandStateNavigate +
+        titleSearchNavigate
     );
-  }, [subCategoryState, brandState, pageState]);
+  }, [subCategoryState, brandState, pageState, titleSearchState]);
 
   return {
     pageState,
     brandState,
     subCategoryState,
+    titleSearchState,
     handleChangeSubCategory,
     handleChangeBrand,
     handleChangeCategory,
     handleChangePage,
+    handleChangeSearchTitle,
   };
 };
 

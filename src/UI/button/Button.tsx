@@ -1,5 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 import { Button as ButtonAnt } from "antd";
+import { Link } from "react-router-dom";
 
 interface ButtonProps extends PropsWithChildren {
   onClick?: () => void;
@@ -8,6 +9,7 @@ interface ButtonProps extends PropsWithChildren {
   danger?: boolean;
   htmlType?: "button" | "submit" | "reset";
   textAlign?: "left" | "right" | "center";
+  href?: string;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -18,6 +20,7 @@ const Button: FC<ButtonProps> = ({
   ghost,
   htmlType,
   textAlign,
+  href,
 }) => {
   return (
     <ButtonAnt
@@ -29,7 +32,7 @@ const Button: FC<ButtonProps> = ({
       ghost={ghost}
       htmlType={htmlType}
     >
-      {children}
+      {href ? <Link to={href}>{children}</Link> : <>{children}</>}
     </ButtonAnt>
   );
 };

@@ -1,5 +1,5 @@
 import Header from "../../component/header/Header";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { Outlet } from "react-router-dom";
 import { Row } from "antd";
 import PurchaseConfirmationModal from "../../component/purchase-confirmation-modal/PurchaseConfirmationModal";
@@ -11,14 +11,17 @@ import { Content } from "../../UI";
 const MainPage: FC = () => {
   const { isActiveModal } = useModalReducer();
 
-  const { data } = useGetProductsInfoQuery();
+  const { data, isLoading } = useGetProductsInfoQuery();
 
-  const dataCategory = data && data.map((item) => item.category);
+  const dataCategory = useMemo(
+    () => data && data.map((item) => item.category),
+    [data]
+  );
 
   return (
     <Row gutter={24} style={{ marginLeft: 0, marginRight: 0 }}>
       <Header />
-      {dataCategory && <Navbar productCategories={dataCategory} />}
+      <Navbar productCategories={dataCategory} isLoading={isLoading} />
       <Content>
         <Outlet />
       </Content>
