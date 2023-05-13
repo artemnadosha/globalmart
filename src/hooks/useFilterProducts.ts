@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface useCreateUrlReturnProps {
   pageState: number;
@@ -79,7 +79,7 @@ export const useFilterProducts = (): useCreateUrlReturnProps => {
     }
   }, [params.categories, brand, page, subCategory, titleSearch]);
 
-  useEffect(() => {
+  const navigateProduct = useCallback(() => {
     const pageStateNavigate = pageQuery + pageState;
     const subCategoryStateNavigate =
       subCategoryState !== "all" ? subCategoryQuery + subCategoryState : "";
@@ -97,7 +97,17 @@ export const useFilterProducts = (): useCreateUrlReturnProps => {
         brandStateNavigate +
         titleSearchNavigate
     );
-  }, [subCategoryState, brandState, pageState, titleSearchState]);
+  }, [
+    subCategoryState,
+    brandState,
+    pageState,
+    titleSearchState,
+    categoryState,
+  ]);
+
+  useEffect(() => {
+    navigateProduct();
+  }, [navigateProduct]);
 
   return {
     pageState,

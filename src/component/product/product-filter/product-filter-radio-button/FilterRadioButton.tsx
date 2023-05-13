@@ -1,4 +1,4 @@
-import { Radio, RadioChangeEvent } from "antd";
+import { Radio } from "antd";
 import { FC } from "react";
 import { correctionName } from "../../../../utils";
 

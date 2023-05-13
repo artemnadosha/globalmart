@@ -42,7 +42,7 @@ const CheckoutPage: FC = () => {
       removeAllCart();
       cleanCheckout();
     }
-  }, [isSuccess, removeAllCart]);
+  }, [isSuccess, removeAllCart, cleanCheckout]);
 
   const actionsButton = (
     <Space.Compact style={{ width: "100%", justifyContent: "center" }}>

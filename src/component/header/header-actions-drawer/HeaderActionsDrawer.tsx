@@ -1,6 +1,6 @@
 import { Badge, Drawer } from "antd";
 import { FC, ReactElement, useState } from "react";
-import { Button, IconFavorite } from "../../../UI";
+import { Button } from "../../../UI";
 import { TypeProduct } from "../../../types/TypeProduct";
 import HeaderActionListDrawer from "./HeaderActionListDrawer/HeaderActionListDrawer";
 import { correctionName } from "../../../utils";
