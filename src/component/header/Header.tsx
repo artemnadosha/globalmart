@@ -23,8 +23,7 @@ const Header: FC = () => {
             </Button>
           </div>
           <div className={s.wrapperActions}>
-            <IconUser />
-
+            {/*<IconUser />*/}
             <HeaderActionsDrawer
               products={favoriteItems}
               icon={<IconFavorite />}
@@ -39,7 +38,7 @@ const Header: FC = () => {
               textButton="Go to cart"
               colorBadge="blue"
             />
-            <Button type="primary">Sign In</Button>
+            {/*<Button type="primary">Sign In</Button>*/}
           </div>
         </div>
       </Col>

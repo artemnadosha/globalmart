@@ -1,31 +1,24 @@
-# Before you start the project, start the server
+# Setup
 
-### `npm run server`
+- Clone the repository
+- Install dependencies `npm install` | `yarn install`
+- Run a script that will automatically turn on the json-server and start the build with the
+  server `npm run build-server`
 
-### `npm run start`
+# Technologies this project
 
-## Available Scripts
+- [React](https://react.dev/)
+- [React router dom](https://reactrouter.com/en/main)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Redux Toolkit, RTK Query](https://redux-toolkit.js.org/)
+- [SCSS](https://sass-lang.com/)
+- [UI Framework Ant Design](https://ant.design/)
+- [Json Server](https://www.npmjs.com/package/json-server)
+- [Testing library Jest](https://jestjs.io/ru/docs/tutorial-react)
+- And a few more auxiliary libraries
 
-In the project directory, you can run:
+*The project is not set up for commercial work, but simply a figment of my imagination*
 
-### `npm start`
+# Stay in touch
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-
+Author - [Artem Nadosha](https://www.linkedin.com/in/artem-nadosha-b76689251/)

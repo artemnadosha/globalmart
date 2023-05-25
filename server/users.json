@@ -1,0 +1,30 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Artem",
+      "secondName": "Nadosha",
+      "age": 27,
+      "phone": "Not specified",
+      "email": "test@test.test",
+      "password": "1234",
+      "address": {
+        "city": "Not specified",
+        "street": "Not specified"
+      },
+      "payout": {
+        "creditCard": {
+          "nameOnCard": "Test Test",
+          "expiry": "Not specified",
+          "cardNumber": "Not specified",
+          "cvv": "Not specified"
+        },
+        "paypal": "Not specified",
+        "applePay": "Not specified"
+      },
+      "cartItems": [],
+      "favoriteItems": []
+    }
+  ]
+}
+
